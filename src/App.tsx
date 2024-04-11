@@ -25,7 +25,7 @@ const HomePage = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <div><p>John Segreti, Aaron Xue, Max Siczek</p></div>
+        <div><p>John Segreti, Aaron Xue, Max Siczek!!</p></div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>Edit <code>src/App.tsx</code> and save to reload.</p>
         {/* Button for Basic Career Assessment */}
