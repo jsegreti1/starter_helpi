@@ -19,7 +19,7 @@ const HomePage = () => {
   return (
     <div>
       <header className="App-header">
-        <div><p>John Segreti, Aaron Xue, Max Siczek</p></div>
+        <div><p>John Segreti, Aaron Xue, Max Siczek!!</p></div>
         <img src={logo} className="App-logo" alt="logo" />
         <Button onClick={() => navigate('/career-assessment', { state: { assessmentType: 'Basic' } })}>Start Basic Career Assessment</Button>
         <Button onClick={() => navigate('/career-assessment', { state: { assessmentType: 'Advanced' } })} style={{ marginLeft: '10px' }}>Start Advanced Career Assessment</Button>
