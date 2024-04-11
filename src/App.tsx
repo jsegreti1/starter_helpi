@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
 
+// Placeholder for your CareerAssessment component
+const CareerAssessment = () => {
+  return <div>This is the Basic Career Assessment Page.</div>;
+};
+
 const HomePage = () => {
   const navigate = useNavigate();
-  const [key, setKey] = useState('');
+  const [key, setKey] = useState<string>('');
 
   function handleSubmit() {
+    // Logic for handling the submit action
     console.log("API Key Submitted: ", key);
   }
 
@@ -17,12 +23,15 @@ const HomePage = () => {
   }
 
   return (
-    <div>
+    <div className="App">
       <header className="App-header">
         <div><p>John Segreti, Aaron Xue, Max Siczek!!</p></div>
         <img src={logo} className="App-logo" alt="logo" />
-        <Button onClick={() => navigate('/career-assessment', { state: { assessmentType: 'Basic' } })}>Start Basic Career Assessment</Button>
-        <Button onClick={() => navigate('/career-assessment', { state: { assessmentType: 'Advanced' } })} style={{ marginLeft: '10px' }}>Start Advanced Career Assessment</Button>
+        <p>Edit <code>src/App.tsx</code> and save to reload.</p>
+        {/* Button for Basic Career Assessment */}
+        <Button onClick={() => navigate('/career-assessment')}>Start Basic Career Assessment</Button>
+        {/* New Button for Advanced Career Assessment */}
+        <Button onClick={() => navigate('/career-assessment')} variant="info" style={{ marginLeft: '10px' }}>Start Advanced Career Assessment</Button>
       </header>
       <Form>
         <Form.Label>API Key:</Form.Label>
@@ -34,23 +43,12 @@ const HomePage = () => {
   );
 };
 
-const AssessmentPage = () => {
-  const location = useLocation();
-  const assessmentType = location.state?.assessmentType || 'Basic'; // Default to 'Basic' if no state is passed
-
-  return (
-    <div>
-      <h1>{assessmentType} Career Assessment</h1>
-    </div>
-  );
-};
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/career-assessment" element={<AssessmentPage />} />
+        <Route path="/career-assessment" element={<CareerAssessment />} />
       </Routes>
     </BrowserRouter>
   );
