@@ -1,11 +1,15 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
-const DetailedQuestions: React.FC = () => {
+interface DetailedQuestionsProps {
+  goBack: () => void;
+}
+
+const DetailedQuestions: React.FC<DetailedQuestionsProps> = ({ goBack }) => {
   return (
     <div>
-      <h2>Detailed Questions</h2>
-      <p>Dive into detailed questions to explore your career path more deeply.</p>
-      {/* Additional content goes here */}
+      <p>Detailed questions. No such thing as overthinking your future.</p>
+      <Button onClick={goBack}>Back to Home</Button>
     </div>
   );
 };

@@ -14,8 +14,43 @@ if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
 function App() {
-  const [key, setKey] = useState<string>(keyData); // For API key input
-  const [activeSection, setActiveSection] = useState<'basic' | 'detailed' | ''>(''); // For question page selection
+  
+  // For API key input
+  const [key, setKey] = useState<string>(keyData);
+  
+  // For question page selection
+  const [activePage, setActivePage] = useState<'home' | 'basic' | 'detailed'>('home');
+
+  const renderPageContent = () => {
+    switch (activePage) {
+      case 'basic':
+        return <BasicQuestions goBack={() => setActivePage('home')} />;
+      case 'detailed':
+        return <DetailedQuestions goBack={() => setActivePage('home')} />;
+      default:
+        return renderHomePage();
+    }
+  };
+
+  const renderHomePage = () => {
+    return (
+      <>
+        <Header />
+        <div className="central-container">
+          <h1>Cool Career Corner</h1>
+          <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences! Crafted with care, our unique Career Cuiz catalyzes curiosity, connecting you with careers that celebrate your capabilities, creativity, and character. What "Cuiz" will you choose?</p>
+          <div className="button-container">
+            <Button variant="outline-dark" onClick={() => setActivePage('basic')}>Basic Questions</Button>
+            <Button variant="outline-dark" onClick={() => setActivePage('detailed')}>Detailed Questions</Button>
+          </div>
+        </div>
+        <footer>
+          <p>Home | Donate | Contact Us | Terms of Service</p>
+        </footer>
+      </>
+    );
+  };
+
 
   // Sets the local storage item to the API key the user inputed
   function handleSubmit() {
@@ -28,31 +63,11 @@ function App() {
     setKey(event.target.value);
   }
 
+  // Return statement for App.tsx
   return (
     <div className="App">
-      <Header />
-      <div className="central-container">
-        <h1>Cool Career Corner</h1>
-        <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences! Crafted with care, our unique Career Cuiz catalyzes curiosity, connecting you with careers that celebrate your capabilities, creativity, and character. What "Cuiz" will you choose?</p>
-        <div className="button-container">
-          <Button variant="outline-dark" onClick={() => setActiveSection('basic')}>Basic Questions</Button>
-          <Button variant="outline-dark" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>
-        </div>
-        <div>
-          {activeSection === 'basic' && <BasicQuestions />}
-          {activeSection === 'detailed' && <DetailedQuestions />}
-        </div>
-        <footer>
-          <p>Home | Donate | Contact Us | Terms of Service</p>
-        </footer>
-      <Form>
-        <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-        <br></br>
-        <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form>
+      {renderPageContent()}
     </div>
-  </div>
   );
 }
 export default App;
