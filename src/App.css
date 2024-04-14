@@ -43,11 +43,25 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.central-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.central-container h1 {
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.9em;
 }
