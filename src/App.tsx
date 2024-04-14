@@ -12,9 +12,9 @@ if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
 function App() {
-  const [key, setKey] = useState<string>(keyData); //for api key input
+  const [key, setKey] = useState<string>(keyData); // For API key input
   
-  //sets the local storage item to the api key the user inputed
+  // Sets the local storage item to the API key the user inputed
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
     window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
@@ -30,19 +30,10 @@ function App() {
         <Header></Header>
       </header>
       <div className="App-header">
-        <div><p>First deploy.</p></div>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div><p>Cool Career Corner</p></div>
+
+
+
       </div>
       <Form>
         <Form.Label>API Key:</Form.Label>
