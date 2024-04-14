@@ -24,6 +24,17 @@
   color: white;
 }
 
+.Header-header {
+  background-color: #063970;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(8px + 1.5vmin);
+  color: white;
+}
+
 .App-link {
   color: #61dafb;
 }
