@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
+import { Button, Form } from 'react-bootstrap';
 
-// Placeholder for your CareerAssessment component
-const CareerAssessment = () => {
-  return <div>This is the Basic Career Assessment Page.</div>;
-};
 
-const HomePage = () => {
-  const navigate = useNavigate();
-  const [key, setKey] = useState<string>('');
-
+//local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
+let keyData = "";
+const saveKeyData = "MYKEY";
+const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
+if (prevKey !== null) {
+  keyData = JSON.parse(prevKey);
+}
+function App() {
+  const [key, setKey] = useState<string>(keyData); //for api key input
+  
+  //sets the local storage item to the api key the user inputed
   function handleSubmit() {
-    // Logic for handling the submit action
-    console.log("API Key Submitted: ", key);
+    localStorage.setItem(saveKeyData, JSON.stringify(key));
+    window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
   }
-
+  //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
@@ -25,33 +27,27 @@ const HomePage = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <div><p>John Segreti, Aaron Xue, Max Siczek</p></div>
+        <div><p>First deploy.</p></div>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Edit <code>src/App.tsx</code> and save to reload.</p>
-        {/* Button for Basic Career Assessment */}
-        <Button onClick={() => navigate('/career-assessment')}>Start Basic Career Assessment</Button>
-        {/* New Button for Advanced Career Assessment */}
-        <Button onClick={() => navigate('/career-assessment')} variant="info" style={{ marginLeft: '10px' }}>Start Advanced Career Assessment</Button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
       </header>
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-        <br />
+        <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
     </div>
   );
-};
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/career-assessment" element={<CareerAssessment />} />
-      </Routes>
-    </BrowserRouter>
-  );
 }
-
 export default App;
