@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
+
 import { Button, Form } from 'react-bootstrap';
-import { Header } from "./sections/Header"
-import BasicQuestions from './BasicQuestions';
-import DetailedQuestions from './DetailedQuestions';
+
+import styles from './components/ButtonComponent/ButtonComponent.module.css';
+
+import { Header } from "./sections/Header";
+
+import BasicQuestions from './components/Questions/BasicQuestions';
+import DetailedQuestions from './components/Questions/DetailedQuestions';
 
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
@@ -40,8 +45,8 @@ function App() {
           <h1>Cool Career Corner</h1>
           <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences! Crafted with care, our unique Career Cuiz catalyzes curiosity, connecting you with careers that celebrate your capabilities, creativity, and character. What "Cuiz" will you choose?</p>
           <div className="button-container">
-            <Button variant="outline-dark" onClick={() => setActivePage('basic')}>Basic Questions</Button>
-            <Button variant="outline-dark" onClick={() => setActivePage('detailed')}>Detailed Questions</Button>
+            <button className={styles.fancyButton} onClick={() => setActivePage('basic')}>Basic Questions</button>
+            <button className={styles.fancyButton} onClick={() => setActivePage('detailed')}>Detailed Questions</button>
           </div>
         </div>
         <footer>
