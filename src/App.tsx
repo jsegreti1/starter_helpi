@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
-
+import { Header } from "./sections/Header"
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -26,7 +26,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="Header-header">
+        <Header></Header>
+      </header>
+      <div className="App-header">
         <div><p>First deploy.</p></div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -40,7 +43,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </div>
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
