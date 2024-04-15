@@ -40,8 +40,7 @@
 
 .fancyButton { 
   --thickness: 0.3rem;
-  --roundness: 1.2rem;
-  --opacity: 0.6;
+  --roundness: 0 rem; /*Change*/
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
   background: none;
@@ -79,15 +78,13 @@
 
 .fancyButton rect {
     fill: none;
-    stroke: #eff6ff;
+    stroke: #1174f6;
     stroke-width: var(--thickness);
     rx: var(--roundness);
     stroke-linejoin: round;
     stroke-dasharray: 185%;
     stroke-dashoffset: 80;
-    -webkit-animation: snake 2s linear infinite;
     animation: snake 2s linear infinite;
-    -webkit-animation-play-state: paused;
     animation-play-state: paused;
     height: 100%;
     opacity: 0;
@@ -96,19 +93,12 @@
   }
   
   .fancyButton:hover rect {
-    -webkit-animation-play-state: running;
     animation-play-state: running;
-    opacity: var(--opacity);
+    opacity: 1.0;
   }
-  
-  @-webkit-keyframes snake {
-    to {
-      stroke-dashoffset: 370%;
-    }
-  }
+
   
   @keyframes snake {
-    to {
-      stroke-dashoffset: 370%;
-    }
+    0% { stroke-dashoffset: 0; } /* Start at 0 offset */
+    100% { stroke-dashoffset: 380%; } /* End at the same visual point as the start */
   }
