@@ -9,8 +9,8 @@
 
 .App-header {
   /* The following was changed from default to make the site look modern -AX */
-  background-color: #db1010;
-  color: #1118a0;
+  background-color: #99a8e8;
+  color: #333;
   min-height: 100vh;
   padding: 20px;
   display: flex;
@@ -30,11 +30,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(8px + 1.5vmin);
-  color: white;
+  color: rgb(235, 11, 11);
 }
 
 .App-link {
-  color: #61dafb;
+  color: #dab057;
 }
 
 .central-container {
@@ -43,10 +43,12 @@
   padding: 20px;
   border: 2px solid black;
   text-align: center;
+  background-color: #add8e6; /* The background color inside the box which contains homepage description and buttons */
 }
 
 .central-container h1 {
   margin-bottom: 20px;
+  background-color: #3de295;
 }
 
 .button-container {

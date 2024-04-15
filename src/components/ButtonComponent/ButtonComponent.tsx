@@ -2,20 +2,18 @@ import React from 'react';
 import styles from './ButtonComponent.module.css';
 
 interface ButtonComponentProps {
-  label: string;
-  onClick: () => void;
-  isDisabled?: boolean; // Optional prop to handle the disabled state
+  text: string;
+  onClick: () => void; // Adjust the type signature if necessary for your onClick handler
 }
-
-const ButtonComponent: React.FC<ButtonComponentProps> = ({ label, onClick, isDisabled }) => {
-  // Use the `btn-101` class from your CSS module
+ /* Do I need SVG for animation to play? */
+ 
+ const ButtonComponent: React.FC<ButtonComponentProps> = ({ text, onClick }) => {
   return (
-    <button 
-      className={styles.fancyButton}
-      onClick={onClick} 
-      disabled={isDisabled}
-    >
-      {label}
+    <button className={styles.fancyButton} onClick={onClick}>
+      {text}
+      <svg className={styles.buttonSvg} viewBox="0 0 200 100" preserveAspectRatio="none">
+        <rect width="200" height="100" fill="transparent" className={styles.buttonRect} />
+      </svg>
     </button>
   );
 };

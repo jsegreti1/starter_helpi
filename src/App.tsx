@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import './App.css';
 
 import { Button, Form } from 'react-bootstrap';
@@ -45,8 +46,19 @@ function App() {
           <h1>Cool Career Corner</h1>
           <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences! Crafted with care, our unique Career Cuiz catalyzes curiosity, connecting you with careers that celebrate your capabilities, creativity, and character. What "Cuiz" will you choose?</p>
           <div className="button-container">
-            <button className={styles.fancyButton} onClick={() => setActivePage('basic')}>Basic Questions</button>
-            <button className={styles.fancyButton} onClick={() => setActivePage('detailed')}>Detailed Questions</button>
+            {/* Update your buttons to include the SVG element */}
+            <button className={styles.fancyButton} onClick={() => setActivePage('basic')}>
+              Basic Questions
+              <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+                <rect width="200" height="100" fill="transparent" />
+              </svg>
+            </button>
+            <button className={styles.fancyButton} onClick={() => setActivePage('detailed')}>
+              Detailed Questions
+              <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+                <rect width="200" height="100" fill="transparent" />
+              </svg>
+            </button>
           </div>
         </div>
         <footer>
@@ -55,6 +67,7 @@ function App() {
       </>
     );
   };
+  
 
 
   // Sets the local storage item to the API key the user inputed
