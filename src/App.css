@@ -14,14 +14,18 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* The following was changed from default to make the site look modern -AX */
+  background-color: #f2f2f2;
+  color: #333;
   min-height: 100vh;
+  padding: 20px;
   display: flex;
+  /* Have not played around with the default settings below -AX */
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .Header-header {
@@ -39,11 +43,25 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.central-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.central-container h1 {
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.9em;
 }
