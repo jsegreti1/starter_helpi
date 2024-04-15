@@ -1,5 +1,7 @@
 /* module.css files ensure that component isolation and multiple styles are a possibility. */
 
+import 
+
 .fancyButton,
 .fancyButton *,
 .fancyButton :after,
@@ -14,15 +16,14 @@
   -webkit-appearance: button;
   background-color: #000;
   background-image: none;
-  color: #fff;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  color: #f2f2f2; /* Change later */
+
+  font-family: 'REM', sans-serif;
   font-size: 100%;
   font-weight: 900;
   line-height: 1.5;
   margin: 0;
-  -webkit-mask-image: none; /* Adjusted as radial-gradient doesn't seem necessary */
+  -webkit-mask-image: none;
   padding: 0;
   text-transform: uppercase;
 }
@@ -38,11 +39,11 @@
 .fancyButton [hidden] {
   display: none;
 }
-.fancyButton {
+.fancyButton { /* These are the actual button settings? */
   --thickness: 0.3rem;
   --roundness: 1.2rem;
-  --color: #eff6ff;
-  --opacity: 0.6;
+  --color: #08397a;
+  --opacity: 0.8;
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
   background: none;
@@ -52,7 +53,7 @@
   color: var(--color);
   cursor: pointer;
   display: block;
-  font-family: Poppins, "sans-serif";
+  font-family: 'REM', "sans-serif";
   font-size: 1rem;
   font-weight: 500;
   padding: 0.8rem 3rem;
@@ -69,7 +70,7 @@
 .fancyButton svg {
   border-radius: var(--roundness);
   display: block;
-  filter: none; /* Adjusted as there's no filter with id `#glow` defined */
+  filter: url(#glow); 
   height: 100%;
   left: 0;
   position: absolute;
@@ -84,9 +85,45 @@
   stroke-linejoin: round;
   stroke-dasharray: 185%;
   stroke-dashoffset: 80;
-  -webkit-animation: none; /* Adjusted as there's no animation called `snake` */
-  animation: none; /* Adjusted as there's no animation called `snake` */
+  -webkit-animation: running;
+  animation: running;
   height: 100%;
   opacity: var(--opacity);
   width: 100%;
 }
+
+.fancyButton rect {
+    fill: none;
+    stroke: var(--color);
+    stroke-width: var(--thickness);
+    rx: var(--roundness);
+    stroke-linejoin: round;
+    stroke-dasharray: 185%;
+    stroke-dashoffset: 80;
+    -webkit-animation: snake 2s linear infinite;
+    animation: snake 2s linear infinite;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.2s;
+    width: 100%;
+  }
+  
+  .fancyButton:hover rect {
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+    opacity: var(--opacity);
+  }
+  
+  @-webkit-keyframes snake {
+    to {
+      stroke-dashoffset: 370%;
+    }
+  }
+  
+  @keyframes snake {
+    to {
+      stroke-dashoffset: 370%;
+    }
+  }
