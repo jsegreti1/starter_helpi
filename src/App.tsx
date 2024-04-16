@@ -39,8 +39,6 @@ function App() {
         <div className="App-body">
           <h1>Cool Career Corner</h1>
           <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences! Crafted with care, our unique Career Cuiz catalyzes curiosity, connecting you with careers that celebrate your capabilities, creativity, and character. What "Cuiz" will you choose?</p>
-            <Button variant="outline-dark" onClick={() => setActiveSection('basic')}>Click here for a Basic Cuiz</Button>
-            <Button variant="outline-dark" onClick={() => setActiveSection('detailed')}>Click here for a Detailed Cuiz</Button>
         </div>
         <footer>
           <p>Home | Donate | Contact Us | Terms of Service</p>
