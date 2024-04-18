@@ -31,14 +31,13 @@ function App() {
       <div className="App">
         <div className="App-header">
         <div className="button-container">
-            <Button variant="outline-dark" onClick={() => setActiveSection('home')}>Home</Button>
-            <Button variant="outline-dark" onClick={() => setActiveSection('basic')}>Basic Questions</Button>
-            <Button variant="outline-dark" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>
           </div>
         </div>
         <div className="App-body">
           <h1>Cool Career Corner</h1>
-          <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences! Crafted with care, our unique Career Cuiz catalyzes curiosity, connecting you with careers that celebrate your capabilities, creativity, and character. What "Cuiz" will you choose?</p>
+          <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences!</p>
+          <Button variant="" onClick={() => setActiveSection('basic')}>Basic Questions</Button>
+          <Button variant="" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>
         </div>
         <footer>
           <p>Home | Donate | Contact Us | Terms of Service</p>
@@ -102,6 +101,7 @@ function App() {
   } else {
     return (
       <div className="App">
+        
         <div className="App-header">
         <div className="button-container">
             <Button variant="outline-dark" onClick={() => setActiveSection('home')}>Home</Button>
@@ -109,6 +109,7 @@ function App() {
             <Button variant="outline-dark" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>
           </div>
         </div>
+
         <div className="App-body">
         <h3>ERROR: Page not found</h3>
             <Button onClick={() => setActiveSection('home')}>Home</Button>
