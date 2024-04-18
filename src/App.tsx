@@ -33,17 +33,19 @@ function App() {
   if (activeSection === 'home'){
     return (
       <div className="App">
-        <div className="App-header">
         <div className="button-container">
-          </div>
-        </div>
-        <div className="App-body">
+      </div>
+
+
+<div className="App-body">
   <div className="intro-container">
     <h1>Cool Career Corner</h1>
-    <p>Welcome to the Cool Career Corner - the destination of choice for all the cool kids concerned about their future. Here, you'll find tools to help you understand your strengths and how those can be applied to specific careers. Are you ready to discover your destiny?</p>
+    <p>Welcome to the Cool Career Corner - the destination of choice for all cool kids who care about their future! Here, you'll find tools to help you understand your strengths and how those can be applied to specific careers. Are you ready to discover your destiny?</p>
   </div>
   
-  <h2 className="quiz-header">Career "Cuizzes"</h2>
+  <div className="quiz-header-container">
+    <h2 className="quiz-header">Career Challenges</h2>
+  </div>
 
   <div className="button-container">
     <div className="button-description">
@@ -53,7 +55,7 @@ function App() {
           <rect width="200" height="100" fill="transparent" />
         </svg>
       </button>
-      <p>Begin your bright future with broad and basic inquiries.</p>
+      <p>Multiple choice! For the time-efficient.</p>
     </div>
     
     <div className="button-description">
@@ -63,7 +65,7 @@ function App() {
           <rect width="200" height="100" fill="transparent" />
         </svg>
       </button>
-      <p>Delving deeper down into your desired direction with more detailed questions.</p>
+      <p>Open-response: respond openly, and Mr. GPT will take care of the rest.</p>
     </div>
   </div>
 </div>
@@ -79,11 +81,15 @@ function App() {
         </Form>
     </div>
     );
+
+
+
+
   }else if (activeSection === 'basic'){
     return (
       <div className="App">
         <div className="App-header">
-          <div className="button-container">
+          <div className="header-button-container">
             <Button variant="outline-dark" onClick={() => setActiveSection('home')}>Home</Button>
             <Button variant="outline-dark" onClick={() => setActiveSection('basic')}>Basic Questions</Button>
             <Button variant="outline-dark" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>
@@ -103,11 +109,15 @@ function App() {
         </Form>
     </div>
     );
+
+
+
+
   }else if (activeSection === 'detailed'){
     return (
       <div className="App">
         <div className="App-header">
-        <div className="button-container">
+        <div className="header-button-container">
             <Button variant="outline-dark" onClick={() => setActiveSection('home')}>Home</Button>
             <Button variant="outline-dark" onClick={() => setActiveSection('basic')}>Basic Questions</Button>
             <Button variant="outline-dark" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>

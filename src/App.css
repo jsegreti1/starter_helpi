@@ -36,12 +36,16 @@ body, html {
 }
 
 .intro-container {
-  margin-bottom: 2rem; /* Add some space below the intro text */
+  margin-bottom: 2rem;
+  border: 2px solid #000; 
+  padding: 1rem; 
+  margin: 1rem auto; 
+  max-width: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .quiz-header {
-  margin-bottom: 1rem; /* Space above the quiz buttons */
-  text-decoration: underline dotted; /* If you want dotted underlines */
+  margin-bottom: 1rem;
 }
 
 .central-container {
@@ -75,7 +79,20 @@ body, html {
   text-align: left;
 }
 
+.button-description-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
 .button-container button:hover, .button-container button:focus {
+  background-color: #ff2222;
+  color: #fff;
+}
+
+.header-button-container button:hover, .header-button-container button:focus {
   background-color: #ff2222;
   color: #fff;
 }
