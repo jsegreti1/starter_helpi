@@ -8,7 +8,7 @@ interface DetailedQuestionsProps {
 const DetailedQuestions: React.FC<DetailedQuestionsProps> = ({ goBack }) => {
   return (
     <div>
-      <p>Detailed questions. No such thing as overthinking your future.</p>
+      <p>Detailed questions: no such thing as overthinking your future.</p>
       <Button onClick={goBack}>Back to Home</Button>
     </div>
   );
