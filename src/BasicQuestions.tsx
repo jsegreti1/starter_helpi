@@ -1,316 +1,134 @@
+import React from "react"
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
-export function BasicQuestions(): JSX.Element {
-  const [answer1, setAnswer1] = useState<string>(""); 
-  const [answer2, setAnswer2] = useState<string>("");
-  const [answer3, setAnswer3] = useState<string>("");
-  const [answer4, setAnswer4] = useState<string>("");
-  const [answer5, setAnswer5] = useState<string>("");
-  const [answer6, setAnswer6] = useState<string>("");
-  const [answer7, setAnswer7] = useState<string>("");
-  
-  function updateAnswer1(event:  React.ChangeEvent<HTMLInputElement>){
-    setAnswer1(event.target.value);
-  }
-  function updateAnswer2(event:  React.ChangeEvent<HTMLInputElement>){
-    setAnswer2(event.target.value);
-  }
-  function updateAnswer3(event:  React.ChangeEvent<HTMLInputElement>){
-    setAnswer3(event.target.value);
-  }
-  function updateAnswer4(event:  React.ChangeEvent<HTMLInputElement>){
-    setAnswer4(event.target.value);
-  }
-  function updateAnswer5(event:  React.ChangeEvent<HTMLInputElement>){
-    setAnswer5(event.target.value);
-  }
-  function updateAnswer6(event:  React.ChangeEvent<HTMLInputElement>){
-    setAnswer6(event.target.value);
-  }
-  function updateAnswer7(event:  React.ChangeEvent<HTMLInputElement>){
-    setAnswer7(event.target.value);
+const PROMPTS =[ 
+  "Question 1", 
+  "Question 2", 
+  "Question 3", 
+  "Question 4", 
+  "Question 5", 
+  "Question 6",  
+  "Question 7"
+];
+const Choice_A =[ 
+  "Question 1A", 
+  "Question 2A", 
+  "Question 3A", 
+  "Question 4A", 
+  "Question 5A", 
+  "Question 6A",  
+  "Question 7A"
+];
+const Choice_B =[ 
+  "Question 1B", 
+  "Question 2B", 
+  "Question 3B", 
+  "Question 4B", 
+  "Question 5B", 
+  "Question 6B",  
+  "Question 7B"
+];
+const Choice_C =[ 
+  "Question 1C", 
+  "Question 2C", 
+  "Question 3C", 
+  "Question 4C", 
+  "Question 5C", 
+  "Question 6C",  
+  "Question 7C"
+];
+const Choice_D =[ 
+  "Question 1D", 
+  "Question 2D", 
+  "Question 3D", 
+  "Question 4D", 
+  "Question 5D", 
+  "Question 6D",  
+  "Question 7D"
+];
+
+
+export function BasicQuestions(): JSX.Element { 
+  const [answers, setAnswers] = useState<string>("");
+  const [currentAns, setCurrentAns] = useState<string>("");
+  const [prompt, setPrompt] = useState<string>(PROMPTS[0]);
+  const [choiceA, setChoiceA] = useState<string>(Choice_A[0]);
+  const [choiceB, setChoiceB] = useState<string>(Choice_B[0]);
+  const [choiceC, setChoiceC] = useState<string>(Choice_C[0]);
+  const [choiceD, setChoiceD] = useState<string>(Choice_D[0]);
+  const [qNum, setQNum] = useState<number>(1);
+  const [finished, setFinished] = useState<boolean>(false);
+
+  function updateCurrent(event: React.ChangeEvent<HTMLInputElement>) {
+    setCurrentAns(event.target.value);  
   }
 
-  return (
-      <div>
-          <Form.Group>
-            <Form.Label>Basic Career Cuiz</Form.Label>
-            <p>For users that are starting their career exploration journey and those that are unsure: A simple and easy cuiz to get your journey started!</p>
-            <Form.Group>
-            <Form.Label>Question 1:</Form.Label>
-                  <Form.Check
-                      type="radio"
-                      name="A"
-                      id="A"
-                      label="A"
-                      value="A"
-                      onChange={updateAnswer1}
-                      checked={answer1 === "A"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="B"
-                      id="B"
-                      label="B"
-                      value="B"
-                      onChange={updateAnswer1}
-                      checked={answer1 === "B"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="C"
-                      id="C"
-                      label="C"
-                      value="C"
-                      onChange={updateAnswer1}
-                      checked={answer1 === "C"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="D"
-                      id="D"
-                      label="D"
-                      value="D"
-                      onChange={updateAnswer1}
-                      checked={answer1 === "D"}
-                  />
-            </Form.Group>
-            <Form.Group>
-            <Form.Label>Question 2:</Form.Label>
-                  <Form.Check
-                      type="radio"
-                      name="A"
-                      id="A"
-                      label="A"
-                      value="A"
-                      onChange={updateAnswer2}
-                      checked={answer2 === "A"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="B"
-                      id="B"
-                      label="B"
-                      value="B"
-                      onChange={updateAnswer2}
-                      checked={answer2 === "B"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="C"
-                      id="C"
-                      label="C"
-                      value="C"
-                      onChange={updateAnswer2}
-                      checked={answer2 === "C"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="D"
-                      id="D"
-                      label="D"
-                      value="D"
-                      onChange={updateAnswer2}
-                      checked={answer2 === "D"}
-                  />
-            </Form.Group>
-            <Form.Group>
-            <Form.Label>Question 3:</Form.Label>
-                  <Form.Check
-                      type="radio"
-                      name="A"
-                      id="A"
-                      label="A"
-                      value="A"
-                      onChange={updateAnswer3}
-                      checked={answer3 === "A"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="B"
-                      id="B"
-                      label="B"
-                      value="B"
-                      onChange={updateAnswer3}
-                      checked={answer3 === "B"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="C"
-                      id="C"
-                      label="C"
-                      value="C"
-                      onChange={updateAnswer3}
-                      checked={answer3 === "C"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="D"
-                      id="D"
-                      label="D"
-                      value="D"
-                      onChange={updateAnswer3}
-                      checked={answer3 === "D"}
-                  />
-            </Form.Group>
-            <Form.Group>
-            <Form.Label>Question 4:</Form.Label>
-                  <Form.Check
-                      type="radio"
-                      name="A"
-                      id="A"
-                      label="A"
-                      value="A"
-                      onChange={updateAnswer4}
-                      checked={answer4 === "A"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="B"
-                      id="B"
-                      label="B"
-                      value="B"
-                      onChange={updateAnswer4}
-                      checked={answer4 === "B"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="C"
-                      id="C"
-                      label="C"
-                      value="C"
-                      onChange={updateAnswer4}
-                      checked={answer4 === "C"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="D"
-                      id="D"
-                      label="D"
-                      value="D"
-                      onChange={updateAnswer4}
-                      checked={answer4 === "D"}
-                  />
-            </Form.Group>
-            <Form.Group>
-            <Form.Label>Question 5:</Form.Label>
-                  <Form.Check
-                      type="radio"
-                      name="A"
-                      id="A"
-                      label="A"
-                      value="A"
-                      onChange={updateAnswer5}
-                      checked={answer5 === "A"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="B"
-                      id="B"
-                      label="B"
-                      value="B"
-                      onChange={updateAnswer5}
-                      checked={answer5 === "B"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="C"
-                      id="C"
-                      label="C"
-                      value="C"
-                      onChange={updateAnswer5}
-                      checked={answer5 === "C"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="D"
-                      id="D"
-                      label="D"
-                      value="D"
-                      onChange={updateAnswer5}
-                      checked={answer5 === "D"}
-                  />
-            </Form.Group>
-            <Form.Group>
-            <Form.Label>Question 6:</Form.Label>
-                  <Form.Check
-                      type="radio"
-                      name="A"
-                      id="A"
-                      label="A"
-                      value="A"
-                      onChange={updateAnswer6}
-                      checked={answer6 === "A"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="B"
-                      id="B"
-                      label="B"
-                      value="B"
-                      onChange={updateAnswer6}
-                      checked={answer6 === "B"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="C"
-                      id="C"
-                      label="C"
-                      value="C"
-                      onChange={updateAnswer6}
-                      checked={answer6 === "C"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="D"
-                      id="D"
-                      label="D"
-                      value="D"
-                      onChange={updateAnswer6}
-                      checked={answer6 === "D"}
-                  />
-            </Form.Group>
-            <Form.Group>
-            <Form.Label>Question 7:</Form.Label>
-                  <Form.Check
-                      type="radio"
-                      name="A"
-                      id="A"
-                      label="A"
-                      value="A"
-                      onChange={updateAnswer7}
-                      checked={answer7 === "A"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="B"
-                      id="B"
-                      label="B"
-                      value="B"
-                      onChange={updateAnswer7}
-                      checked={answer7 === "B"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="C"
-                      id="C"
-                      label="C"
-                      value="C"
-                      onChange={updateAnswer7}
-                      checked={answer7 === "C"}
-                  />
-                  <Form.Check
-                      type="radio"
-                      name="D"
-                      id="D"
-                      label="D"
-                      value="D"
-                      onChange={updateAnswer7}
-                      checked={answer7 === "D"}
-                  />
-            </Form.Group> 
-          </Form.Group>
-      </div>
-  );
+  function moveOn() {
+    if(currentAns === ""){
+      return;
+    }
+    setAnswers(currentAns);
+    setCurrentAns("");
+    setPrompt(PROMPTS[qNum]);
+    setChoiceA(Choice_A[qNum]);
+    setChoiceB(Choice_B[qNum]);
+    setChoiceC(Choice_C[qNum]);
+    setChoiceD(Choice_D[qNum]);
+    setQNum(qNum+1);
+    if(qNum === 7){
+      setFinished(true);
+    }
+
+  }
+  if(!finished){
+    return(
+      <Form.Group>
+        <Form.Label>{prompt}</Form.Label>
+        <Form.Check
+        type="radio"
+        name={choiceA}
+        onChange={updateCurrent}
+        id="A"
+        label={choiceA}
+        value={choiceA}
+        checked={currentAns === choiceA}
+        />
+        <Form.Check
+        type="radio"
+        name={choiceB}
+        onChange={updateCurrent}
+        id="B"
+        label={choiceB}
+        value={choiceB}
+        checked={currentAns === choiceB}
+        />
+        <Form.Check
+        type="radio"
+        name={choiceC}
+        onChange={updateCurrent}
+        id="C"
+        label={choiceC}
+        value={choiceC}
+        checked={currentAns === choiceC}
+        />
+        <Form.Check
+        type="radio"
+        name={choiceD}
+        onChange={updateCurrent}
+        id="D"
+        label={choiceD}
+        value={choiceD}
+        checked={currentAns === choiceD}
+        />
+        <Button onClick={moveOn}>Submit</Button>
+
+
+      </Form.Group>
+    )
+  } else {
+    return(
+      <p>GPT RESPONSE</p>
+    );
+  }
 }
