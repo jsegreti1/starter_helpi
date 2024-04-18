@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
+
+import styles from './ButtonComponent.module.css';
+
+
 import { BasicQuestions } from './BasicQuestions';
 import { DetailedQuestions } from './DetailedQuestions';
 
@@ -34,11 +38,36 @@ function App() {
           </div>
         </div>
         <div className="App-body">
-          <h1>Cool Career Corner</h1>
-          <p>Welcome to Cool Career Corner, where your captivating journey towards a compelling and customized career path commences!</p>
-          <Button variant="" onClick={() => setActiveSection('basic')}>Basic Questions</Button>
-          <Button variant="" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>
-        </div>
+  <div className="intro-container">
+    <h1>Cool Career Corner</h1>
+    <p>Welcome to the Cool Career Corner - the destination of choice for all the cool kids concerned about their future. Here, you'll find tools to help you understand your strengths and how those can be applied to specific careers. Are you ready to discover your destiny?</p>
+  </div>
+  
+  <h2 className="quiz-header">Career "Cuizzes"</h2>
+
+  <div className="button-container">
+    <div className="button-description">
+      <button className={styles.fancyButton} onClick={() => setActiveSection('basic')}>
+        Basic Questions
+        <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+          <rect width="200" height="100" fill="transparent" />
+        </svg>
+      </button>
+      <p>Begin your bright future with broad and basic inquiries.</p>
+    </div>
+    
+    <div className="button-description">
+      <button className={styles.fancyButton} onClick={() => setActiveSection('detailed')}>
+        Detailed Questions
+        <svg viewBox="0 0 200 100" preserveAspectRatio="none">
+          <rect width="200" height="100" fill="transparent" />
+        </svg>
+      </button>
+      <p>Delving deeper down into your desired direction with more detailed questions.</p>
+    </div>
+  </div>
+</div>
+
         <footer>
           <p>Home | Donate | Contact Us | Terms of Service</p>
         </footer>
