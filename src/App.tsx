@@ -6,7 +6,7 @@ import { Button, Form } from 'react-bootstrap';
 
 import styles from './components/ButtonComponent/ButtonComponent.module.css';
 
-import { Header } from "./sections/Header";
+// import { Header } from "./sections/Header";
 
 import BasicQuestions from './components/Questions/BasicQuestions';
 import DetailedQuestions from './components/Questions/DetailedQuestions';
