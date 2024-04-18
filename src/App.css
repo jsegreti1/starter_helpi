@@ -82,7 +82,7 @@ body, html {
 .button-container button {
   display: flex;
   justify-content: space-around;
-  align-items: start;
+  align-items: flex-start;
   background-color: #ff2222;
   color: white;
   border: none;
@@ -94,7 +94,7 @@ body, html {
 .button-description-container {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   margin: 0 auto;
   max-width: 600px;
 }
