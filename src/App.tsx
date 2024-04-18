@@ -40,32 +40,34 @@ function App() {
 <div className="App-body">
   <div className="intro-container">
     <h1>Cool Career Corner</h1>
-    <p>Welcome to the Cool Career Corner - the destination of choice for all cool kids who care about their future! Here, you'll find tools to help you understand your strengths and how those can be applied to specific careers. Are you ready to discover your destiny?</p>
+    <p>Welcome to the Cool Career Corner - the destination of choice for all cool kids who care about their future! Here, you'll find tools to help you understand your strengths and how they can be applied to specific careers. Are you ready to discover your destiny?</p>
   </div>
   
   <div className="quiz-header-container">
     <h2 className="quiz-header">Career Challenges</h2>
+    <p>Below we have our famous questionnaires.</p>
   </div>
 
-  <div className="button-container">
-    <div className="button-description">
-      <button className={styles.fancyButton} onClick={() => setActiveSection('basic')}>
+  <div className="quizzes-container">
+
+    <div className="quiz-section">
+    <button className={styles.fancyButton} onClick={() => setActiveSection('basic')}>
         Basic Questions
         <svg viewBox="0 0 200 100" preserveAspectRatio="none">
           <rect width="200" height="100" fill="transparent" />
         </svg>
       </button>
-      <p>Multiple choice! For the time-efficient.</p>
+      <p>Multiple choice! For the time-efficient. </p>
     </div>
-    
-    <div className="button-description">
+
+    <div className="quiz-section">
       <button className={styles.fancyButton} onClick={() => setActiveSection('detailed')}>
         Detailed Questions
         <svg viewBox="0 0 200 100" preserveAspectRatio="none">
           <rect width="200" height="100" fill="transparent" />
         </svg>
       </button>
-      <p>Open-response: respond openly, and Mr. GPT will take care of the rest.</p>
+      <p>Open-response: respond openly, and Sir GPT will take care of the rest.</p>
     </div>
   </div>
 </div>

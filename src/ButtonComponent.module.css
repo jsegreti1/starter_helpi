@@ -9,20 +9,20 @@
   border: 0 solid;
   box-sizing: border-box;
 }
-.fancyButton {
+
+.fancyButton { /* Color and font gets overwritten by something outside of this file */
   -webkit-tap-highlight-color: transparent;
   background-color: #000;
   background-image: none;
   color: #f2f2f2; /* Change later */
-
-  font-family: 'REM', Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 100%;
-  font-weight: 900;
   line-height: 1.5;
-  margin: 0;
+  margin: ;
   padding: 0;
   text-transform: uppercase;
 }
+
 .fancyButton:disabled {
   cursor: default;
 }
@@ -36,7 +36,7 @@
   display: none;
 }
 
-.fancyButton { 
+.fancyButton {  /* Does this overwrite the above? 4/18 */
   --thickness: 0.3rem;
   --roundness: 0 rem; /*Change*/
   -webkit-backdrop-filter: blur(100px);
@@ -48,9 +48,8 @@
   color: #0c0d0e;
   cursor: pointer;
   display: block;
-  font-family: 'REM', "sans-serif";
+  font-family: 'Helvetica Neue', 'REM', "sans-serif";
   font-size: 1rem;
-  font-weight: 500;
   padding: 0.8rem 3rem;
   position: relative;
 }
