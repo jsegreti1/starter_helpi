@@ -24,7 +24,7 @@ function App() {
   const handleAnswersChange = (newAnswers: string[], index: number) => {
     setAnswers(newAnswers);
   };
-  
+
 
   // Sets the local storage item to the API key the user inputed
   function handleSubmit() {
@@ -108,7 +108,7 @@ function App() {
           <BasicQuestions />
         </div>
         <footer>
-          <p>Home | Donate | Contact Us | Terms of Service</p>
+          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
         </footer>
         <Form>
           <Form.Label>API Key:</Form.Label>
@@ -137,7 +137,7 @@ function App() {
         </div>
 
         <footer>
-          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button> // Why?
+          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
         </footer>
         <Form>
           <Form.Label>API Key:</Form.Label>
