@@ -21,10 +21,6 @@ function App() {
   const [answers, setAnswers] = useState<string[]>(new Array(7).fill(""));
   const [activeSection, setActiveSection] = useState<'basic' | 'detailed' | 'home'>('home'); // For question page selection
 
-  const handleAnswersChange = (newAnswers: string[], index: number) => {
-    setAnswers(newAnswers);
-  };
-
 
   // Sets the local storage item to the API key the user inputed
   function handleSubmit() {
@@ -133,7 +129,7 @@ function App() {
           </div>
         </div>
         <div className="App-body">
-         {activeSection === 'detailed' && <DetailedQuestions onChange={handleAnswersChange} />}
+        <DetailedQuestions />
         </div>
 
         <footer>
