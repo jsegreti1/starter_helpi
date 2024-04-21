@@ -24,12 +24,12 @@ function App() {
   const handleAnswersChange = (newAnswers: string[], index: number) => {
     setAnswers(newAnswers);
   };
-
+  
 
   // Sets the local storage item to the API key the user inputed
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
-    console.log('Submitting:', answers); /* Debug */
+    console.log('Submitting:', answers); /* Debug */    
     window.location.reload(); // When making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
   }
   
@@ -91,6 +91,9 @@ function App() {
     </div>
     );
 
+
+
+
   }else if (activeSection === 'basic'){
     return (
       <div className="App">
@@ -130,11 +133,11 @@ function App() {
           </div>
         </div>
         <div className="App-body">
-          {activeSection === 'detailed' && <DetailedQuestions onChange={handleAnswersChange} />}
+         {activeSection === 'detailed' && <DetailedQuestions onChange={handleAnswersChange} />}
         </div>
 
         <footer>
-          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button> // Why?
         </footer>
         <Form>
           <Form.Label>API Key:</Form.Label>
