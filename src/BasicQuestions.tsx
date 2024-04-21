@@ -50,7 +50,7 @@ const Choice_D =[
 
 
 export function BasicQuestions(): JSX.Element { 
-  const [answers, setAnswers] = useState<string>("");
+  // const [answers, setAnswers] = useState<string>("");
   const [currentAns, setCurrentAns] = useState<string>("");
   const [prompt, setPrompt] = useState<string>(PROMPTS[0]);
   const [choiceA, setChoiceA] = useState<string>(Choice_A[0]);
@@ -68,7 +68,7 @@ export function BasicQuestions(): JSX.Element {
     if(currentAns === ""){
       return;
     }
-    setAnswers(currentAns);
+    // setAnswers(currentAns);
     setCurrentAns("");
     setPrompt(PROMPTS[qNum]);
     setChoiceA(Choice_A[qNum]);
