@@ -68,7 +68,7 @@ export function BasicQuestions(): JSX.Element {
     if(currentAns === ""){
       return;
     }
-    setAnswers(currentAns);
+    setAnswers(answers + " ; " + currentAns);
     setCurrentAns("");
     setPrompt(PROMPTS[qNum]);
     setChoiceA(Choice_A[qNum]);
