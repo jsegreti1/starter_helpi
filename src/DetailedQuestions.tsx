@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { ProgressBar } from 'react-bootstrap';
 
 const PROMPTS =[ 
   "Question 1", 
@@ -42,7 +43,19 @@ export function DetailedQuestions(): JSX.Element {
           event: React.ChangeEvent<HTMLInputElement>
           ) => setCurrentAns(event.target.value)}
         />
-        <Button onClick={moveOn}>Submit</Button>
+
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <ProgressBar
+              striped
+              animated
+              className={styles.customProgressBar}
+              style={{ marginTop: '20px', height: '30px', width: '2000%' }}
+              now={((qNum - 1) / PROMPTS.length) * 100}
+              label={`${qNum - 1}/${PROMPTS.length}`}
+          />
+        </div>
+
+        <Button style={{ marginTop: '20px' }} onClick={moveOn}>Submit</Button>
 
 
       </Form.Group>
