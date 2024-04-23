@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { ProgressBar } from 'react-bootstrap';
-import styles from './ProgressBar.module.css';
 
 const PROMPTS =[ 
   "Question 1", 
@@ -15,24 +14,17 @@ const PROMPTS =[
 ];
 
 export function DetailedQuestions(): JSX.Element { 
-  // const [answers, setAnswers] = useState<string>("");
+  const [answers, setAnswers] = useState<string>("");
   const [currentAns, setCurrentAns] = useState<string>("");
   const [prompt, setPrompt] = useState<string>(PROMPTS[0]);
   const [qNum, setQNum] = useState<number>(1);
   const [finished, setFinished] = useState<boolean>(false);
 
-  /*
-   function updateCurrent(event: React.ChangeEvent<HTMLInputElement>) {
-    setCurrentAns(event.target.value);  
-  }
-  */
-
-
   function moveOn() {
     if(currentAns === ""){
       return;
     }
-    // setAnswers(currentAns);
+    setAnswers(answers + " ; " + currentAns);
     setCurrentAns("");
     setPrompt(PROMPTS[qNum]);
     setQNum(qNum+1);

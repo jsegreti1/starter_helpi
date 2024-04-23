@@ -2,7 +2,6 @@ import React from "react"
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { ProgressBar } from 'react-bootstrap';
-import styles from './ProgressBar.module.css';
 
 
 const PROMPTS =[ 
@@ -53,7 +52,7 @@ const Choice_D =[
 
 
 export function BasicQuestions(): JSX.Element { 
-  // const [answers, setAnswers] = useState<string>("");
+  const [answers, setAnswers] = useState<string>("");
   const [currentAns, setCurrentAns] = useState<string>("");
   const [prompt, setPrompt] = useState<string>(PROMPTS[0]);
   const [choiceA, setChoiceA] = useState<string>(Choice_A[0]);
@@ -71,7 +70,7 @@ export function BasicQuestions(): JSX.Element {
     if(currentAns === ""){
       return;
     }
-    // setAnswers(currentAns);
+    setAnswers(answers + " ; " + currentAns);
     setCurrentAns("");
     setPrompt(PROMPTS[qNum]);
     setChoiceA(Choice_A[qNum]);
