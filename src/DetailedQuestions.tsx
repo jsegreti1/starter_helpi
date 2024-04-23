@@ -21,11 +21,18 @@ export function DetailedQuestions(): JSX.Element {
   const [qNum, setQNum] = useState<number>(1);
   const [finished, setFinished] = useState<boolean>(false);
 
+  /*
+   function updateCurrent(event: React.ChangeEvent<HTMLInputElement>) {
+    setCurrentAns(event.target.value);  
+  }
+  */
+
+
   function moveOn() {
     if(currentAns === ""){
       return;
     }
-    setAnswers(answers + " ; " + currentAns);
+    // setAnswers(currentAns);
     setCurrentAns("");
     setPrompt(PROMPTS[qNum]);
     setQNum(qNum+1);
