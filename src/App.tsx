@@ -4,7 +4,6 @@ import { Button, Form } from 'react-bootstrap';
 
 import styles from './ButtonComponent.module.css';
 
-
 import { BasicQuestions } from './BasicQuestions';
 import { DetailedQuestions } from './DetailedQuestions';
 
@@ -16,6 +15,7 @@ const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: 
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
+
 function App() {
   const [key, setKey] = useState<string>(keyData); // For API key input
   // const [answers, setAnswers] = useState<string[]>(new Array(7).fill(""));
