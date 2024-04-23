@@ -48,7 +48,6 @@ export function DetailedQuestions(): JSX.Element {
           <ProgressBar
               striped
               animated
-              className={styles.customProgressBar}
               style={{ marginTop: '20px', height: '30px', width: '2000%' }}
               now={((qNum - 1) / PROMPTS.length) * 100}
               label={`${qNum - 1}/${PROMPTS.length}`}
