@@ -135,7 +135,7 @@ export function BasicQuestions(): JSX.Element {
                 label={`${qNum - 1}/${PROMPTS.length}`}
             />
         </div>
-
+        
         <Button style={{ marginTop: '20px' }} onClick={moveOn}>Submit</Button>
 
 
