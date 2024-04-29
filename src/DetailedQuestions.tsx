@@ -14,7 +14,11 @@ const PROMPTS = [
   "If you had multiple and similar job offers currently, what factors would you prioritize? (e.g., job stability, work-life balance, compensation, benefits, etc.)"
 ];
 
-export function DetailedQuestions(): JSX.Element {
+interface DetailedQuestionsProps {
+  apiKey: string;
+}
+
+export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
   const [answers, setAnswers] = useState<Array<string>>([]);
   const [currentAns, setCurrentAns] = useState<string>("");
   const [qNum, setQNum] = useState<number>(0);
@@ -45,7 +49,7 @@ export function DetailedQuestions(): JSX.Element {
         messages: [{role: "user", content: promptText}],
       }, {
         headers: {
-          'Authorization': 'Bearer ', // Replace YOUR_API_KEY_HERE with your actual API key
+          'Authorization': `Bearer ${props.apiKey}`,
           'Content-Type': 'application/json'
         }
       });

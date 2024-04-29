@@ -4,7 +4,6 @@ import { Button, Form } from 'react-bootstrap';
 
 import styles from './ButtonComponent.module.css';
 
-
 import { BasicQuestions } from './BasicQuestions';
 import { DetailedQuestions } from './DetailedQuestions';
 
@@ -16,6 +15,7 @@ const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: 
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
+
 function App() {
   const [key, setKey] = useState<string>(keyData); // For API key input
   // const [answers, setAnswers] = useState<string[]>(new Array(7).fill(""));
@@ -37,7 +37,6 @@ function App() {
       <div className="App">
         <div className="button-container">
       </div>
-
 
 <div className="App-body">
   <div className="intro-container">
@@ -86,9 +85,6 @@ function App() {
     </div>
     );
 
-
-
-
   }else if (activeSection === 'basic'){
     return (
       <div className="App">
@@ -113,35 +109,27 @@ function App() {
         </Form>
     </div>
     );
-
-
-
-
-  }else if (activeSection === 'detailed'){
+  }
+  else if (activeSection === 'detailed') {
     return (
       <div className="App">
         <div className="App-header">
-        <div className="header-button-container">
+          <div className="header-button-container">
             <Button variant="outline-dark" onClick={() => setActiveSection('home')}>Home</Button>
             <Button variant="outline-dark" onClick={() => setActiveSection('basic')}>Basic Questions</Button>
             <Button variant="outline-dark" onClick={() => setActiveSection('detailed')}>Detailed Questions</Button>
           </div>
         </div>
         <div className="App-body">
-            <DetailedQuestions />
+          <DetailedQuestions apiKey={key} />
         </div>
         <footer>
           <p>Home | Donate | Contact Us | Terms of Service</p>
         </footer>
-        <Form>
-          <Form.Label>API Key:</Form.Label>
-          <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-          <br></br>
-          <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-        </Form>
-    </div>
+      </div>
     );
-  } else {
+  }
+  else {
     return (
       <div className="App">
         
