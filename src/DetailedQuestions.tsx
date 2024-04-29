@@ -53,7 +53,8 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
         messages: [{role: "user", content: promptText}],
       });
 
-      console.log(chatCompletion.choices[0].message.content); // CHANGE
+      const responseText = chatCompletion.choices[0].message.content || "";
+      setGptResponse(responseText);
 
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
