@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, ProgressBar } from "react-bootstrap";
-import axios from 'axios'; // Ensure you have axios installed: npm install axios
+import OpenAI from 'openai'; // USE npm install openai
 
-
+const openai = new OpenAI({
+  apiKey: '',
+  dangerouslyAllowBrowser: true // Hardcoded key, will need to remove later
+})
 
 const PROMPTS = [
   "Please describe your current occupation or status. If you're currently or have previously been a student, please also mention your area of study.",
@@ -34,33 +37,29 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
     setCurrentAns("");
     if (qNum === PROMPTS.length - 1) {
       setFinished(true);
-      // submitAnswersToGPT(newAnswers);
+      submitAnswersToGPT(newAnswers);
     } else {
       setAnswers(newAnswers);
       setQNum(qNum + 1);
     }
   }
-/*
+
   async function submitAnswersToGPT(allAnswers: string[]) {
     const promptText = allAnswers.join('\n');
     try {
-       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      
-      model: "gpt-4",
+      // Using the chat completions create method appropriate for chat models
+      const chatCompletion = await openai.chat.completions.create({
+        model: "gpt-4-turbo",  // Using a chat-specific model
         messages: [{role: "user", content: promptText}],
-      }, {
-        headers: {
-          'Authorization': `Bearer ${props.apiKey}`,
-          'Content-Type': 'application/json'
-        }y
       });
-      setGptResponse(response.data.choices[0].message.content);
+
+      console.log(chatCompletion.choices[0].message.content); // CHANGE
+
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       alert('Failed to fetch response from OpenAI.');
     }
   }
-*/
   return (
     <Form>
       {!finished ? (
@@ -83,7 +82,7 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
           />
 
           <Button variant="primary" onClick={handleSubmit} style={{ marginTop: '20px' }}>
-            Submit
+            Get Answer
           </Button>
         </>
       ) : (
