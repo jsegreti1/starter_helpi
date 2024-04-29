@@ -34,27 +34,17 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
     setCurrentAns("");
     if (qNum === PROMPTS.length - 1) {
       setFinished(true);
-      submitAnswersToGPT(newAnswers);
+      // submitAnswersToGPT(newAnswers);
     } else {
       setAnswers(newAnswers);
       setQNum(qNum + 1);
     }
   }
-
+/*
   async function submitAnswersToGPT(allAnswers: string[]) {
     const promptText = allAnswers.join('\n');
     try {
-
-
-
-
-
-
-
-
-
-      
-      const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
       
       model: "gpt-4",
         messages: [{role: "user", content: promptText}],
@@ -62,7 +52,7 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
         headers: {
           'Authorization': `Bearer ${props.apiKey}`,
           'Content-Type': 'application/json'
-        }
+        }y
       });
       setGptResponse(response.data.choices[0].message.content);
     } catch (error) {
@@ -70,7 +60,7 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
       alert('Failed to fetch response from OpenAI.');
     }
   }
-
+*/
   return (
     <Form>
       {!finished ? (
