@@ -1,34 +1,26 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
-
 import styles from './ButtonComponent.module.css';
-
 import { BasicQuestions } from './BasicQuestions';
 import { DetailedQuestions } from './DetailedQuestions';
 
-
-let keyData = "";
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData);
-if (prevKey !== null) {
-  keyData = JSON.parse(prevKey);
-}
-
 function App() {
-  const [key, setKey] = useState<string>(keyData);
-  // const [answers, setAnswers] = useState<string[]>(new Array(7).fill(""));
+  const saveKeyData = "MYKEY";
+  const prevKey = localStorage.getItem(saveKeyData) || "";
+  const [key, setKey] = useState<string>(prevKey);
   const [activeSection, setActiveSection] = useState<'basic' | 'detailed' | 'home'>('home'); // For question page selection
 
-  function handleSubmit() {
-    localStorage.setItem(saveKeyData, JSON.stringify(key));
-    // console.log('Submitting:', answers); /* Debug */    
-    window.location.reload();
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    localStorage.setItem(saveKeyData, key);
+    // window.location.reload(); // Not needed?
   }
   
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+
   if (activeSection === 'home'){
     return (
       <div className="App">

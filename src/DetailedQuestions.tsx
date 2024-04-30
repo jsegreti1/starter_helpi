@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, ProgressBar } from "react-bootstrap";
 import OpenAI from 'openai'; // USE npm install openai
 
-const openai = new OpenAI({
-  apiKey: '',
-  dangerouslyAllowBrowser: true // Hardcoded key, will need to remove later
-})
 
 const PROMPTS = [
   "Please describe your current occupation or status. If you're currently or have previously been a student, please also mention your area of study.",
@@ -21,7 +17,7 @@ interface DetailedQuestionsProps {
   apiKey: string;
 }
 
-export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
+export function DetailedQuestions({ apiKey } : DetailedQuestionsProps): JSX.Element {
   const [answers, setAnswers] = useState<Array<string>>([]);
   const [currentAns, setCurrentAns] = useState<string>("");
   const [qNum, setQNum] = useState<number>(0);
@@ -45,11 +41,16 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
   }
 
   async function submitAnswersToGPT(allAnswers: string[]) {
+    const openai = new OpenAI({
+      apiKey: apiKey,  // Use the passed API key
+      dangerouslyAllowBrowser: true // Evaluate the need for this setting
+    });
+    
     const promptText = allAnswers.join('\n');
+
     try {
-      // Using the chat completions create method appropriate for chat models
       const chatCompletion = await openai.chat.completions.create({
-        model: "gpt-4-turbo",  // Using a chat-specific model
+        model: "gpt-4-turbo",
         messages: [{role: "user", content: promptText}],
       });
 
@@ -61,6 +62,8 @@ export function DetailedQuestions(props: DetailedQuestionsProps): JSX.Element {
       alert('Failed to fetch response from OpenAI.');
     }
   }
+
+
   return (
     <Form>
       {!finished ? (
