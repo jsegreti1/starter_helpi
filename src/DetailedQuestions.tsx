@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, ProgressBar } from "react-bootstrap";
 import OpenAI from 'openai'; // USE npm install openai
+import './App.css';
 
 
 const PROMPTS = [
@@ -92,7 +93,9 @@ export function DetailedQuestions({ apiKey } : DetailedQuestionsProps): JSX.Elem
       ) : (
         <div>
           <p>Answers submitted. Here's the response from GPT:</p>
-          <p>{gptResponse}</p>
+          <div className = "App-body">
+            <p>{gptResponse}</p>
+          </div>
         </div>
       )}
     </Form>

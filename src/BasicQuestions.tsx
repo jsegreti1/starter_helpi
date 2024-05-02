@@ -2,57 +2,58 @@ import React from "react"
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { ProgressBar } from 'react-bootstrap';
+import OpenAI from 'openai'; // USE npm install openai
 
 
 const PROMPTS =[ 
-  "Question 1", 
-  "Question 2", 
-  "Question 3", 
-  "Question 4", 
-  "Question 5", 
-  "Question 6",  
-  "Question 7"
+  "Which of these fields are most aligned with your interests?", 
+  "Do you like to work in a team or independently?", 
+  "Would you consider yourself to have the qualities of a leader?", 
+  "Do you prefer to do more critical thinking or working with your hands", 
+  "Would you like to travel?", 
+  "How creative would you like to be in your career?",  
+  "What is your most recent completed form of education?"
 ];
 const Choice_A =[ 
-  "Question 1A", 
-  "Question 2A", 
-  "Question 3A", 
-  "Question 4A", 
-  "Question 5A", 
-  "Question 6A",  
-  "Question 7A"
+  "Science, Technology, Engineering, and Mathematics", 
+  "Strictly independent", 
+  "Yes, I have experience as a leader", 
+  "I prefer to be a critical thinker", 
+  "I prefer to not travel a lot", 
+  "I really want to be creative and express myself",  
+  "Master's Degree or PHD"
 ];
 const Choice_B =[ 
-  "Question 1B", 
-  "Question 2B", 
-  "Question 3B", 
-  "Question 4B", 
-  "Question 5B", 
-  "Question 6B",  
-  "Question 7B"
+  "Visual Art, Writing, and Music", 
+  "Working in a group always", 
+  "Yes, I am not an experienced leader but I believe I have the qualities of one", 
+  "I prefer to work with my hands", 
+  "I prefer to travel accross the country", 
+  "I would not consider myself as someone who enjoys being professional and creative",  
+  "Bachelor's Degree"
 ];
 const Choice_C =[ 
-  "Question 1C", 
-  "Question 2C", 
-  "Question 3C", 
-  "Question 4C", 
-  "Question 5C", 
-  "Question 6C",  
-  "Question 7C"
+  "Buisness, Finance, and Marketing", 
+  "Prefer a bit of both", 
+  "I do not like to take the lead on work", 
+  "I prefer to do both", 
+  "I am willing to travel around the world", 
+  "A bit of creativity would not hurt",  
+  "High School Diploma or GED"
 ];
 const Choice_D =[ 
-  "Question 1D", 
-  "Question 2D", 
-  "Question 3D", 
-  "Question 4D", 
-  "Question 5D", 
-  "Question 6D",  
-  "Question 7D"
+  "Education", 
+  "Does not matter to me", 
+  "I am indifferent to being a leader or not", 
+  "I am indifferent", 
+  "I am indifferent to travel", 
+  "I am cool with whether or not I am creative",  
+  "Did not Graduate High School"
 ];
 
 
 export function BasicQuestions(): JSX.Element { 
-  const [answers, setAnswers] = useState<string>("");
+  const [answers, setAnswers] = useState<string>("You are responding with career advice to a user that has answered an online career quiz. The response you make should accord to the following question/response pairs:");
   const [currentAns, setCurrentAns] = useState<string>("");
   const [prompt, setPrompt] = useState<string>(PROMPTS[0]);
   const [choiceA, setChoiceA] = useState<string>(Choice_A[0]);
@@ -70,7 +71,7 @@ export function BasicQuestions(): JSX.Element {
     if(currentAns === ""){
       return;
     }
-    setAnswers(answers + " ; " + currentAns);
+    setAnswers(answers + " /n " + PROMPTS[qNum]+ " : " + currentAns);
     setCurrentAns("");
     setPrompt(PROMPTS[qNum]);
     setChoiceA(Choice_A[qNum]);
@@ -81,7 +82,7 @@ export function BasicQuestions(): JSX.Element {
     if(qNum === 7){
       setFinished(true);
     }
-
+    
   }
   if(!finished){
     return(
