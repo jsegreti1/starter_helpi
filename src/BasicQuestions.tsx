@@ -7,47 +7,47 @@ import { ProgressBar } from 'react-bootstrap';
 const PROMPTS =[ 
   "What is your employment status?", 
   "Where would you prefer to work?", 
-  "Question 3", 
-  "Question 4", 
-  "Question 5", 
-  "Question 6",  
-  "Question 7"
+  "What type of problem solver are you?", 
+  "What type of work environment do you prefer?", 
+  "Which of these areas would you say interest you the most?", 
+  "Do you prefer leadership positions?",  
+  "How important is work-life balance to you?"
 ];
 const Choice_A =[ 
   "Not employed", 
   "On USA's East Coast", 
-  "Question 3A", 
-  "Question 4A", 
-  "Question 5A", 
-  "Question 6A",  
-  "Question 7A"
+  "A creative and innovative approach", 
+  "Prefer working independently", 
+  "Technology and Engineering", 
+  "Comfortable without leadership responsibilities",  
+  "Not important"
 ];
 const Choice_B =[ 
   "Student, in high school or below", 
   "On USA's West Coast", 
-  "Question 3B", 
-  "Question 4B", 
-  "Question 5B", 
-  "Question 6B",  
-  "Question 7B"
+  "A logical and systematic approach", 
+  "Prefer small teams or partnerships", 
+  "Arts and Design", 
+  "Want to lead small projects/teams",  
+  "Somewhat important"
 ];
 const Choice_C =[ 
   "Student, in undergraduate studies or above", 
   "In USA's Midwest, Gulf, or South regions", 
-  "Question 3C", 
-  "Question 4C", 
-  "Question 5C", 
-  "Question 6C",  
-  "Question 7C"
+  "A hands-on and practical approach", 
+  "Prefer large, collaborative teams", 
+  "Science and Research", 
+  "Want to work in managerial role",  
+  "Mostly important"
 ];
 const Choice_D =[ 
   "Currently employed", 
   "Outside the continental USA", 
-  "Question 3D", 
-  "Question 4D", 
-  "Question 5D", 
-  "Question 6D",  
-  "Question 7D"
+  "A mix of creativity and logic", 
+  "Very dynamic with frequent changes", 
+  "Business and Management", 
+  "Want to eventually be a top executive",  
+  "Top priority"
 ];
 
 
