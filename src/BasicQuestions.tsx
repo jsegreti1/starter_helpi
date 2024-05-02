@@ -5,8 +5,8 @@ import { ProgressBar } from 'react-bootstrap';
 
 
 const PROMPTS =[ 
-  "Question 1", 
-  "Question 2", 
+  "What is your employment status?", 
+  "Where would you prefer to work?", 
   "Question 3", 
   "Question 4", 
   "Question 5", 
@@ -14,8 +14,8 @@ const PROMPTS =[
   "Question 7"
 ];
 const Choice_A =[ 
-  "Question 1A", 
-  "Question 2A", 
+  "Not employed", 
+  "On USA's East Coast", 
   "Question 3A", 
   "Question 4A", 
   "Question 5A", 
@@ -23,8 +23,8 @@ const Choice_A =[
   "Question 7A"
 ];
 const Choice_B =[ 
-  "Question 1B", 
-  "Question 2B", 
+  "Student, in high school or below", 
+  "On USA's West Coast", 
   "Question 3B", 
   "Question 4B", 
   "Question 5B", 
@@ -32,8 +32,8 @@ const Choice_B =[
   "Question 7B"
 ];
 const Choice_C =[ 
-  "Question 1C", 
-  "Question 2C", 
+  "Student, in undergraduate studies or above", 
+  "In USA's Midwest, Gulf, or South regions", 
   "Question 3C", 
   "Question 4C", 
   "Question 5C", 
@@ -41,8 +41,8 @@ const Choice_C =[
   "Question 7C"
 ];
 const Choice_D =[ 
-  "Question 1D", 
-  "Question 2D", 
+  "Currently employed", 
+  "Outside the continental USA", 
   "Question 3D", 
   "Question 4D", 
   "Question 5D", 
