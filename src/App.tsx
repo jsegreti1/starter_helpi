@@ -47,7 +47,7 @@ function App() {
           <rect width="200" height="100" fill="transparent" />
         </svg>
       </button>
-      <p>Multiple choice! For the time-efficient. </p>
+      <p>Multiple choice! With just seven questions, get a rough idea of what career fields may be the best for you. </p>
     </div>
 
     <div className="quiz-section">
@@ -57,7 +57,7 @@ function App() {
           <rect width="200" height="100" fill="transparent" />
         </svg>
       </button>
-      <p>Open-response: respond openly, and Sir GPT will take care of the rest.</p>
+      <p>Open-response: type your responses in the blanks provided, and we will provide you with AI-generated career recommendations personalized to your preferences.</p>
     </div>
   </div>
 </div>
