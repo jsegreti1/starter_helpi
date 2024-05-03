@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, ProgressBar, Card, Spinner } from "react-bootstrap";
 import OpenAI from 'openai';
 
+
 const PROMPTS = [
   "Please describe your current occupation or status. If you're currently or have previously been a student, please also mention your area of study.",
   "Where do you see yourself living? (urban/rural, rainy/sunny, specific country if applicable, etc.)",
@@ -87,7 +88,7 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
             style={{ marginTop: '20px', height: '30px', width: '100%' }}
           />
           <Button variant="primary" onClick={handleSubmit} style={{ marginTop: '20px' }}>
-            Get Answer
+            Next
           </Button>
         </>
       ) : loading ? (
