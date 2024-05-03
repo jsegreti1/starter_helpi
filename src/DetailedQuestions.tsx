@@ -87,7 +87,7 @@ export function DetailedQuestions({ apiKey } : DetailedQuestionsProps): JSX.Elem
           />
 
           <Button variant="primary" onClick={handleSubmit} style={{ marginTop: '20px' }}>
-            Get Answer
+            Next
           </Button>
         </>
       ) : (

@@ -1,58 +1,60 @@
-import React from "react"
-import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import { ProgressBar } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button, Form, ProgressBar } from "react-bootstrap";
 import OpenAI from 'openai'; // USE npm install openai
+import './App.css';
 
 
 const PROMPTS =[ 
-  "Which of these fields are most aligned with your interests?", 
-  "Do you like to work in a team or independently?", 
-  "Would you consider yourself to have the qualities of a leader?", 
-  "Do you prefer to do more critical thinking or working with your hands", 
-  "Would you like to travel?", 
-  "How creative would you like to be in your career?",  
-  "What is your most recent completed form of education?"
+  "What is your employment status?", 
+  "Where would you prefer to work?", 
+  "What type of problem solver are you?", 
+  "What type of work environment do you prefer?", 
+  "Which of these areas would you say interest you the most?", 
+  "Do you prefer leadership positions?",  
+  "How important is work-life balance to you?"
 ];
 const Choice_A =[ 
-  "Science, Technology, Engineering, and Mathematics", 
-  "Strictly independent", 
-  "Yes, I have experience as a leader", 
-  "I prefer to be a critical thinker", 
-  "I prefer to not travel a lot", 
-  "I really want to be creative and express myself",  
-  "Master's Degree or PHD"
+  "Not employed", 
+  "On USA's East Coast", 
+  "A creative and innovative approach", 
+  "Prefer working independently", 
+  "Technology and Engineering", 
+  "Comfortable without leadership responsibilities",  
+  "Not important"
 ];
 const Choice_B =[ 
-  "Visual Art, Writing, and Music", 
-  "Working in a group always", 
-  "Yes, I am not an experienced leader but I believe I have the qualities of one", 
-  "I prefer to work with my hands", 
-  "I prefer to travel accross the country", 
-  "I would not consider myself as someone who enjoys being professional and creative",  
-  "Bachelor's Degree"
+  "Student, in high school or below", 
+  "On USA's West Coast", 
+  "A logical and systematic approach", 
+  "Prefer small teams or partnerships", 
+  "Arts and Design", 
+  "Want to lead small projects/teams",  
+  "Somewhat important"
 ];
 const Choice_C =[ 
-  "Buisness, Finance, and Marketing", 
-  "Prefer a bit of both", 
-  "I do not like to take the lead on work", 
-  "I prefer to do both", 
-  "I am willing to travel around the world", 
-  "A bit of creativity would not hurt",  
-  "High School Diploma or GED"
+  "Student, in undergraduate studies or above", 
+  "In USA's Midwest, Gulf, or South regions", 
+  "A hands-on and practical approach", 
+  "Prefer large, collaborative teams", 
+  "Science and Research", 
+  "Want to work in managerial role",  
+  "Mostly important"
 ];
 const Choice_D =[ 
-  "Education", 
-  "Does not matter to me", 
-  "I am indifferent to being a leader or not", 
-  "I am indifferent", 
-  "I am indifferent to travel", 
-  "I am cool with whether or not I am creative",  
-  "Did not Graduate High School"
+  "Currently employed", 
+  "Outside the continental USA", 
+  "A mix of creativity and logic", 
+  "Very dynamic with frequent changes", 
+  "Business and Management", 
+  "Want to eventually be a top executive",  
+  "Top priority"
 ];
 
+interface BasicQuestionsProps {
+  apiKey: string;
+}
 
-export function BasicQuestions(): JSX.Element { 
+export function BasicQuestions({ apiKey } : BasicQuestionsProps): JSX.Element { 
   const [answers, setAnswers] = useState<string>("You are responding with career advice to a user that has answered an online career quiz. The response you make should accord to the following question/response pairs:");
   const [currentAns, setCurrentAns] = useState<string>("");
   const [prompt, setPrompt] = useState<string>(PROMPTS[0]);
@@ -62,10 +64,35 @@ export function BasicQuestions(): JSX.Element {
   const [choiceD, setChoiceD] = useState<string>(Choice_D[0]);
   const [qNum, setQNum] = useState<number>(1);
   const [finished, setFinished] = useState<boolean>(false);
+  const [gptResponse, setGptResponse] = useState<string>("");
 
   function updateCurrent(event: React.ChangeEvent<HTMLInputElement>) {
     setCurrentAns(event.target.value);  
   }
+
+  async function submitAnswersToGPT(allAnswers: string) {
+    const openai = new OpenAI({
+      apiKey: apiKey,  // Use the passed API key
+      dangerouslyAllowBrowser: true // Evaluate the need for this setting
+    });
+    
+    const promptText = allAnswers;
+
+    try {
+      const chatCompletion = await openai.chat.completions.create({
+        model: "gpt-4-turbo",
+        messages: [{role: "user", content: promptText}],
+      });
+
+      const responseText = chatCompletion.choices[0].message.content || "";
+      setGptResponse(responseText);
+
+    } catch (error) {
+      console.error('Error calling OpenAI API:', error);
+      alert('Failed to fetch response from OpenAI.');
+    }
+  }
+
 
   function moveOn() {
     if(currentAns === ""){
@@ -81,8 +108,9 @@ export function BasicQuestions(): JSX.Element {
     setQNum(qNum+1);
     if(qNum === 7){
       setFinished(true);
+      submitAnswersToGPT(answers);
     }
-    
+
   }
   if(!finished){
     return(
@@ -142,7 +170,7 @@ export function BasicQuestions(): JSX.Element {
     )
   } else {
     return(
-      <p>GPT RESPONSE</p>
+      <p>{gptResponse}</p>
     );
   }
 }
