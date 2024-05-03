@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background: linear-gradient(160deg, #2c3e50 0%, #4ca1af 100%);
+  background: lightblue;
   color: #f1f1f1;
   min-height: 10vh;
   padding: 20px;
@@ -16,15 +16,15 @@
 }
 
 .App-body {
-  background-color: #3e7ebd; /* Slightly lighter to give depth */
+  background-color: #3e7ebd;
   text-align: center;
   color: #f1f1f1;
   min-height: 90vh;
-  padding: 40px 20px; /* More padding for a spacious look */
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align content from top */
+  justify-content: flex-start;
 }
 
 .App-link {
@@ -42,13 +42,14 @@ body, html {
   margin: 1rem auto; 
   max-width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 1rem
 }
 
 .quiz-header {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.quiz-header-container {
+.quiz-header-container { 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,17 +60,19 @@ body, html {
   display: flex;
   justify-content: space-around;
   padding: 20px;
+  max-width: 70%;
 }
 
 .quiz-section {
   flex: 1;
   margin: 0 10px; /* 10px space between the two quiz section boxes */
-  padding: 0;
+  padding: 1rem;
   border: 2px solid #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: top;
+  border-radius: 1rem
 }
 
 .central-container {
