@@ -40,7 +40,10 @@ FAIL src/App.test.tsx
                 [0mCareer Challenges[0m
               [36m</h2>[39m
               [36m<p>[39m
-                [0mBelow we have our famous questionnaires.[0m
+                [0mWe offer two types of questionnaires, Basic Questions and Detailed Questions. [0m
+              [36m</p>[39m
+              [36m<p>[39m
+                [0mRead below to find out which one is best for your needs. [0m
               [36m</p>[39m
             [36m</div>[39m
             [36m<div[39m
@@ -49,6 +52,9 @@ FAIL src/App.test.tsx
               [36m<div[39m
                 [33mclass[39m=[32m"quiz-section"[39m
               [36m>[39m
+                [36m<p>[39m
+                  [0mMultiple choice! With just seven questions, get a rough idea of what career fields may be the best for you. [0m
+                [36m</p>[39m
                 [36m<button[39m
                   [33mclass[39m=[32m"fancyButton"[39m
                 [36m>[39m
@@ -64,13 +70,13 @@ FAIL src/App.test.tsx
                     [36m/>[39m
                   [36m</svg>[39m
                 [36m</button>[39m
-                [36m<p>[39m
-                  [0mMultiple choice! For the time-efficient. [0m
-                [36m</p>[39m
               [36m</div>[39m
               [36m<div[39m
                 [33mclass[39m=[32m"quiz-section"[39m
               [36m>[39m
+                [36m<p>[39m
+                  [0mOpen response! Type your responses to the questions, and receive AI-generated career recommendations.[0m
+                [36m</p>[39m
                 [36m<button[39m
                   [33mclass[39m=[32m"fancyButton"[39m
                 [36m>[39m
@@ -86,9 +92,6 @@ FAIL src/App.test.tsx
                     [36m/>[39m
                   [36m</svg>[39m
                 [36m</button>[39m
-                [36m<p>[39m
-                  [0mOpen-response: respond openly, and Sir GPT will take care of the rest.[0m
-                [36m</p>[39m
               [36m</div>[39m
             [36m</div>[39m
           [36m</div>[39m
@@ -96,28 +99,28 @@ FAIL src/App.test.tsx
             [36m<p>[39m
               [0mHome | Donate | Contact Us | Terms of Service[0m
             [36m</p>[39m
+            [36m<form[39m
+              [33mclass[39m=[32m""[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+              [36m>[39m
+                [0mAPI Key:[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"form-control"[39m
+                [33mplaceholder[39m=[32m"Insert API Key Here"[39m
+                [33mtype[39m=[32m"password"[39m
+              [36m/>[39m
+              [36m<br />[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mSubmit[0m
+              [36m</button>[39m
+            [36m</form>[39m
           [36m</footer>[39m
-          [36m<form[39m
-            [33mclass[39m=[32m""[39m
-          [36m>[39m
-            [36m<label[39m
-              [33mclass[39m=[32m"form-label"[39m
-            [36m>[39m
-              [0mAPI Key:[0m
-            [36m</label>[39m
-            [36m<input[39m
-              [33mclass[39m=[32m"form-control"[39m
-              [33mplaceholder[39m=[32m"Insert API Key Here"[39m
-              [33mtype[39m=[32m"password"[39m
-            [36m/>[39m
-            [36m<br />[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mSubmit[0m
-            [36m</button>[39m
-          [36m</form>[39m
         [36m</div>[39m
       [36m</div>[39m
     [36m</body>[39m
@@ -143,11 +146,11 @@ FAIL src/App.test.tsx
 -----------------------|---------|----------|---------|---------|-------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
-All files              |   12.37 |    11.53 |    3.84 |   12.37 |                   
- App.tsx               |   23.07 |     37.5 |    6.66 |   23.07 | 15-21,44-135      
- BasicQuestions.tsx    |   16.66 |        0 |       0 |   16.66 | 55-143            
+All files              |    9.27 |       10 |    3.57 |    9.27 |                   
+ App.tsx               |   23.07 |     37.5 |    6.66 |   23.07 | 15-21,46-139      
+ BasicQuestions.tsx    |    6.66 |        0 |       0 |    6.66 | 28-105            
  ButtonComponent.tsx   |       0 |      100 |       0 |       0 | 10-11             
- DetailedQuestions.tsx |    3.84 |        0 |       0 |    3.84 | 21-76             
+ DetailedQuestions.tsx |    3.84 |        0 |       0 |    3.84 | 22-77             
  apiService.ts         |       0 |      100 |       0 |       0 | 26-27             
  index.tsx             |       0 |      100 |     100 |       0 | 7-19              
  reportWebVitals.ts    |       0 |        0 |       0 |       0 | 3-10              
@@ -155,7 +158,7 @@ All files              |   12.37 |    11.53 |    3.84 |   12.37 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.094 s
+Time:        3.092 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
