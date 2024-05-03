@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, ProgressBar } from "react-bootstrap";
 import OpenAI from 'openai'; // Make sure you have the openai package installed
 
+
 const PROMPTS =[ 
   "What is your employment status?", 
   "Where would you prefer to work?", 
@@ -21,6 +22,7 @@ const CHOICES = [
 interface BasicQuestionsProps {
   apiKey: string;
 }
+
 
 export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
   const [answers, setAnswers] = useState<string[]>([]);
@@ -105,6 +107,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
         <p>Answers submitted. Here's the response from GPT:</p>
         <p>{gptResponse}</p>
       </div>
+
     );
   }
 }
