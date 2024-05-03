@@ -89,7 +89,7 @@ function App() {
           </div>
         </div>
         <div className="App-body">
-          <BasicQuestions />
+          <BasicQuestions apiKey={key}/>
         </div>
         <footer>
           <p>Home | Donate | Contact Us | Terms of Service</p>
