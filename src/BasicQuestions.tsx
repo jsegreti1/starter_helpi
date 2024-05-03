@@ -1,7 +1,7 @@
-import React from "react"
-import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import { ProgressBar } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button, Form, ProgressBar } from "react-bootstrap";
+import OpenAI from 'openai'; // USE npm install openai
+import './App.css';
 
 
 const PROMPTS =[ 
@@ -50,9 +50,12 @@ const Choice_D =[
   "Top priority"
 ];
 
+interface BasicQuestionsProps {
+  apiKey: string;
+}
 
-export function BasicQuestions(): JSX.Element { 
-  const [answers, setAnswers] = useState<string>("");
+export function BasicQuestions({ apiKey } : BasicQuestionsProps): JSX.Element { 
+  const [answers, setAnswers] = useState<string>("You are responding with career advice to a user that has answered an online career quiz. The response you make should accord to the following question/response pairs:");
   const [currentAns, setCurrentAns] = useState<string>("");
   const [prompt, setPrompt] = useState<string>(PROMPTS[0]);
   const [choiceA, setChoiceA] = useState<string>(Choice_A[0]);
@@ -61,16 +64,41 @@ export function BasicQuestions(): JSX.Element {
   const [choiceD, setChoiceD] = useState<string>(Choice_D[0]);
   const [qNum, setQNum] = useState<number>(1);
   const [finished, setFinished] = useState<boolean>(false);
+  const [gptResponse, setGptResponse] = useState<string>("");
 
   function updateCurrent(event: React.ChangeEvent<HTMLInputElement>) {
     setCurrentAns(event.target.value);  
   }
 
+  async function submitAnswersToGPT(allAnswers: string) {
+    const openai = new OpenAI({
+      apiKey: apiKey,  // Use the passed API key
+      dangerouslyAllowBrowser: true // Evaluate the need for this setting
+    });
+    
+    const promptText = allAnswers;
+
+    try {
+      const chatCompletion = await openai.chat.completions.create({
+        model: "gpt-4-turbo",
+        messages: [{role: "user", content: promptText}],
+      });
+
+      const responseText = chatCompletion.choices[0].message.content || "";
+      setGptResponse(responseText);
+
+    } catch (error) {
+      console.error('Error calling OpenAI API:', error);
+      alert('Failed to fetch response from OpenAI.');
+    }
+  }
+
+
   function moveOn() {
     if(currentAns === ""){
       return;
     }
-    setAnswers(answers + " ; " + currentAns);
+    setAnswers(answers + " /n " + PROMPTS[qNum]+ " : " + currentAns);
     setCurrentAns("");
     setPrompt(PROMPTS[qNum]);
     setChoiceA(Choice_A[qNum]);
@@ -80,6 +108,7 @@ export function BasicQuestions(): JSX.Element {
     setQNum(qNum+1);
     if(qNum === 7){
       setFinished(true);
+      submitAnswersToGPT(answers);
     }
 
   }
@@ -141,7 +170,7 @@ export function BasicQuestions(): JSX.Element {
     )
   } else {
     return(
-      <p>GPT RESPONSE</p>
+      <p>{gptResponse}</p>
     );
   }
 }
