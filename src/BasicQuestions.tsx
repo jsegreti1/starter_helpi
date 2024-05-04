@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, ProgressBar } from "react-bootstrap";
+import { Button, Card, Form, ProgressBar } from "react-bootstrap";
 import OpenAI from 'openai'; // Make sure you have the openai package installed
 
 
@@ -51,6 +51,10 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     }
   }
 
+  function boldGPTHeaders(response: string): string{
+    return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
+  }
+
   async function submitAnswersToGPT(allAnswers: string[]) {
     const openai = new OpenAI({
       apiKey: apiKey,
@@ -63,7 +67,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
         model: "gpt-4-turbo",
         messages: [{role: "user", content: promptText}],
       });
-      const responseText = chatCompletion.choices[0].message.content || "";
+      const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
@@ -105,7 +109,20 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     return (
       <div>
         <p>Answers submitted. Here's the response from GPT:</p>
-        <p>{gptResponse}</p>
+        <Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
+          <Card.Header as="h5" className="text-center">
+            Personalized Response
+          </Card.Header>
+          <Card.Body>
+            <Card.Text as="div">
+              {gptResponse.split('\n').map((item, key) => (
+                <React.Fragment key={key}>
+                  <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
+                </React.Fragment>
+              ))}
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </div>
 
     );

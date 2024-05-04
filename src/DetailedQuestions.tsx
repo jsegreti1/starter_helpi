@@ -41,6 +41,10 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
     }
   }
 
+  function boldGPTHeaders(response: string): string{
+    return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
+  }
+
   async function submitAnswersToGPT(allAnswers: string[]) {
     setLoading(true);  // Start loading
     const openai = new OpenAI({
@@ -59,7 +63,7 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
         ],
       });
 
-      const responseText = chatCompletion.choices[0].message.content || "";
+      const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
@@ -106,7 +110,7 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
             <Card.Text as="div">
               {gptResponse.split('\n').map((item, key) => (
                 <React.Fragment key={key}>
-                  <p style={{ marginBottom: '0.5rem' }}>{item}</p>
+                  <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
                 </React.Fragment>
               ))}
             </Card.Text>
