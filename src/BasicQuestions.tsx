@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card, Form, ProgressBar, Spinner } from "react-bootstrap";
 import OpenAI from 'openai'; // Make sure you have the openai package installed
-
+import './styles.css';
 
 const PROMPTS =[ 
   "What is your employment status?", 
@@ -65,28 +65,43 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     submitAnswersToGPT(answers);
   }
 
-  function boldGPTHeaders(response: string): string{
-    return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
+  function formatGPTResponse(response: string): string {
+    const sections = response.split("**").map((part, index) => {
+      if (index % 2 !== 0) {  
+        return `<b>${part.trim().replace(/:$/, '')}</b><br>`;
+      } else {
+        return part.replace(/^:\s*/, "");
+      }
+    });
+    return sections.join("");
   }
 
   async function submitAnswersToGPT(allAnswers: string[]) {
+    setLoading(true); // Start loading
+
     const openai = new OpenAI({
       apiKey: apiKey,
       dangerouslyAllowBrowser: true
     });
 
     const promptText = allAnswers.join('\n');
+
     try {
       const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4-turbo",
-        messages: [{role: "user", content: promptText}],
+        messages: [
+          {role: "system", content: "Tell me details about your life and I will return only a list of 5 careers that seems like a good fit for you, along with a short description of how it fits you.."},
+          {role: "user", content: promptText}
+        ],
       });
-      setLoading(true);  // Start loading
-      const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
+
+      const responseText = formatGPTResponse(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
+
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       alert('Failed to fetch response from OpenAI.');
+      setLoading(false);
     }
     setLoading(false);  // End loading
   }
@@ -134,9 +149,9 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     return (
       <div>
         <p>Answers submitted. Here's the response from GPT:</p>
-        <Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
+        <Card className="mt-3 shadow-lg frosted-glass" bg="transparent" text="dark" style={{ width: '70%', margin: '0 auto' }}>
           <Card.Header as="h5" className="text-center">
-            Personalized Response
+            Quiz Results
           </Card.Header>
           <Card.Body>
             <Card.Text as="div">

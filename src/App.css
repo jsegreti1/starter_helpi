@@ -4,7 +4,7 @@
 
 .App-header {
   background: lightblue;
-  color: #f1f1f1;
+  color: #000000;
   min-height: 10vh;
   padding: 20px;
   display: flex;
@@ -15,17 +15,25 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+
 .App-body {
-  background-color: #3e7ebd;
+  background-color: #a6bbd1; /* This might be overridden by the gradient if not needed */
   text-align: center;
-  color: #f1f1f1;
+  color: #000000;
   min-height: 90vh;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  background-image: repeating-linear-gradient(
+    45deg, 
+    rgba(69, 190, 247, 0.8), rgba(54, 142, 184, 0.8) 60px, 
+    rgba(135, 162, 189, 0.8) 20px, rgba(135, 162, 189, 0.8) 200px
+  );
 }
+
 
 .App-link {
   color: #61dafb;
@@ -43,6 +51,12 @@ body, html {
   max-width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: 1rem
+}
+
+.frosted-glass {
+  background-color: rgba(255, 255, 255, 0.15);  /* Semi-transparent white */
+  backdrop-filter: blur(5px);  /* Blur effect for the frosted glass */
+  border-radius: 15px;  /* Optional: for rounded corners */
 }
 
 .quiz-header {

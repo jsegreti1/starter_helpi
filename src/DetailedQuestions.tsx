@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, ProgressBar, Card, Spinner } from "react-bootstrap";
 import OpenAI from 'openai';
-
+import './styles.css';
 
 const PROMPTS = [
   "Please describe your current occupation or status. If you're currently or have previously been a student, please also mention your area of study.",
@@ -41,10 +41,6 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
     }
   }
 
-  function boldGPTHeaders(response: string): string{
-    return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
-  }
-
   function restartQuiz(){
     setAnswers([]);
     setFinished(false);
@@ -58,8 +54,19 @@ function refreshGPT(){
   submitAnswersToGPT(answers);
 }
 
+function formatGPTResponse(response: string): string {
+  const sections = response.split("**").map((part, index) => {
+    if (index % 2 !== 0) {  
+      return `<b>${part.trim().replace(/:$/, '')}</b><br>`;
+    } else {
+      return part.replace(/^:\s*/, "");
+    }
+  });
+  return sections.join("");
+}
+
   async function submitAnswersToGPT(allAnswers: string[]) {
-    setLoading(true);  // Start loading
+    setLoading(true);
     const openai = new OpenAI({
       apiKey: apiKey,
       dangerouslyAllowBrowser: true
@@ -71,16 +78,17 @@ function refreshGPT(){
       const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4-turbo",
         messages: [
-          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you."},
+          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you, along with a short description of how it fits you."},
           {role: "user", content: promptText}
         ],
       });
 
-      const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
+      const responseText = formatGPTResponse(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       alert('Failed to fetch response from OpenAI.');
+      setLoading(false);
     }
     setLoading(false);  // End loading
   }
@@ -115,20 +123,21 @@ function refreshGPT(){
           </Spinner>
         </div>
       ) : (
-        <><Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
-              <Card.Header as="h5" className="text-center">
-                Personalized Response
-              </Card.Header>
-              <Card.Body>
-                <Card.Text as="div">
-                  {gptResponse.split('\n').map((item, key) => (
-                    <React.Fragment key={key}>
-                      <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
-                    </React.Fragment>
-                  ))}
-                </Card.Text>
-              </Card.Body>
-            </Card><Button onClick={() => restartQuiz()}>Take Quiz Again</Button><Button onClick={() => refreshGPT()}>Generate a New Response</Button></>
+        <><Card className="mt-3 shadow-lg frosted-glass" bg="transparent" text="dark" style={{ width: '70%', margin: '0 auto' }}>
+            <Card.Header as="h5" className="text-center">
+              Quiz Results
+            </Card.Header>
+            <Card.Body>
+              <Card.Text as="div">
+                {gptResponse.split('\n').map((item, key) => (
+                  <React.Fragment key={key}>
+                    <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
+                  </React.Fragment>
+                ))}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+            <Button onClick={() => restartQuiz()}>Take Quiz Again</Button><Button onClick={() => refreshGPT()}>Generate a New Response</Button></>
       )}
     </Form>
   );
