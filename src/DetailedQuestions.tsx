@@ -45,6 +45,19 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
     return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
   }
 
+  function restartQuiz(){
+    setAnswers([]);
+    setFinished(false);
+    setQNum(0);
+    setGptResponse("");
+    setCurrentAns("");
+}
+function refreshGPT(){
+  setGptResponse("");
+  setLoading(true);
+  submitAnswersToGPT(answers);
+}
+
   async function submitAnswersToGPT(allAnswers: string[]) {
     setLoading(true);  // Start loading
     const openai = new OpenAI({
@@ -102,20 +115,20 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
           </Spinner>
         </div>
       ) : (
-        <Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
-          <Card.Header as="h5" className="text-center">
-            Personalized Response
-          </Card.Header>
-          <Card.Body>
-            <Card.Text as="div">
-              {gptResponse.split('\n').map((item, key) => (
-                <React.Fragment key={key}>
-                  <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
-                </React.Fragment>
-              ))}
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <><Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
+              <Card.Header as="h5" className="text-center">
+                Personalized Response
+              </Card.Header>
+              <Card.Body>
+                <Card.Text as="div">
+                  {gptResponse.split('\n').map((item, key) => (
+                    <React.Fragment key={key}>
+                      <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
+                    </React.Fragment>
+                  ))}
+                </Card.Text>
+              </Card.Body>
+            </Card><Button onClick={() => restartQuiz()}>Take Quiz Again</Button><Button onClick={() => refreshGPT()}>Generate a New Response</Button></>
       )}
     </Form>
   );
