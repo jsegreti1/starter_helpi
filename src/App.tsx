@@ -28,7 +28,7 @@ function App() {
       </div>
 
 <div className="App-body">
-  <div className="intro-container">
+  <div className="intro-container frosted-glass">
     <h1>Cool Career Corner</h1>
     <p>Welcome to the Cool Career Corner - the destination of choice for all cool kids who care about their future! Here, you'll find tools to help you understand your strengths and how they can be applied to specific careers. Are you ready to discover your destiny?</p>
   </div>
@@ -41,7 +41,7 @@ function App() {
 
   <div className="quizzes-container">
 
-    <div className="quiz-section">
+    <div className="quiz-section frosted-glass">
     <p>Multiple choice! With just seven questions, get a rough idea of what career fields may be the best for you. </p>
     <button className={styles.fancyButton} onClick={() => setActiveSection('basic')}>
         Basic Questions
@@ -52,7 +52,7 @@ function App() {
       
     </div>
 
-    <div className="quiz-section">
+    <div className="quiz-section frosted-glass">
     <p>Open response! Type your responses to the questions, and receive AI-generated career recommendations.</p>
       <button className={styles.fancyButton} onClick={() => setActiveSection('detailed')}>
         Detailed Questions
