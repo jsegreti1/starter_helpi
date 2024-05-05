@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card, Form, ProgressBar } from "react-bootstrap";
+import { Button, Card, Form, ProgressBar, Spinner } from "react-bootstrap";
 import OpenAI from 'openai'; // Make sure you have the openai package installed
 
 
@@ -30,6 +30,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
   const [qNum, setQNum] = useState<number>(0);
   const [finished, setFinished] = useState<boolean>(false);
   const [gptResponse, setGptResponse] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   function updateCurrent(event: React.ChangeEvent<HTMLInputElement>) {
     setCurrentAns(event.target.value);
@@ -51,6 +52,19 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     }
   }
 
+  function restartQuiz(){
+      setAnswers([]);
+      setFinished(false);
+      setQNum(0);
+      setGptResponse("");
+      setCurrentAns("");
+  }
+  function refreshGPT(){
+    setGptResponse("");
+    setLoading(true);
+    submitAnswersToGPT(answers);
+  }
+
   function boldGPTHeaders(response: string): string{
     return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
   }
@@ -67,12 +81,14 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
         model: "gpt-4-turbo",
         messages: [{role: "user", content: promptText}],
       });
+      setLoading(true);  // Start loading
       const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       alert('Failed to fetch response from OpenAI.');
     }
+    setLoading(false);  // End loading
   }
 
   if (!finished) {
@@ -106,6 +122,15 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
       </Form>
     );
   } else {
+    if(loading){
+      return(
+      <div className="text-center">
+      <Spinner animation="border" role="status">
+        <span className="sr-only"></span>
+      </Spinner>
+    </div>
+    );
+    }else{
     return (
       <div>
         <p>Answers submitted. Here's the response from GPT:</p>
@@ -123,8 +148,10 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
             </Card.Text>
           </Card.Body>
         </Card>
+        <Button onClick={()=>restartQuiz()}>Take Quiz Again</Button>
+        <Button onClick={()=>refreshGPT()}>Generate a New Response</Button>
       </div>
-
     );
+  }
   }
 }
