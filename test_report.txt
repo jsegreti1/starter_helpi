@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (46 ms)
+  ✕ renders learn react link (45 ms)
 
   ● renders learn react link
 
@@ -22,7 +22,7 @@ FAIL src/App.test.tsx
             [33mclass[39m=[32m"App-body"[39m
           [36m>[39m
             [36m<div[39m
-              [33mclass[39m=[32m"intro-container"[39m
+              [33mclass[39m=[32m"intro-container frosted-glass"[39m
             [36m>[39m
               [36m<h1>[39m
                 [0mCool Career Corner[0m
@@ -50,7 +50,7 @@ FAIL src/App.test.tsx
               [33mclass[39m=[32m"quizzes-container"[39m
             [36m>[39m
               [36m<div[39m
-                [33mclass[39m=[32m"quiz-section"[39m
+                [33mclass[39m=[32m"quiz-section frosted-glass"[39m
               [36m>[39m
                 [36m<p>[39m
                   [0mMultiple choice! With just seven questions, get a rough idea of what career fields may be the best for you. [0m
@@ -72,7 +72,7 @@ FAIL src/App.test.tsx
                 [36m</button>[39m
               [36m</div>[39m
               [36m<div[39m
-                [33mclass[39m=[32m"quiz-section"[39m
+                [33mclass[39m=[32m"quiz-section frosted-glass"[39m
               [36m>[39m
                 [36m<p>[39m
                   [0mOpen response! Type your responses to the questions, and receive AI-generated career recommendations.[0m
@@ -146,11 +146,11 @@ FAIL src/App.test.tsx
 -----------------------|---------|----------|---------|---------|-------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
-All files              |    6.87 |     7.89 |    2.38 |    7.03 |                   
+All files              |    6.47 |     7.89 |    2.38 |    6.52 |                   
  App.tsx               |   23.07 |     37.5 |    6.66 |   23.07 | 15-21,46-139      
- BasicQuestions.tsx    |    4.16 |        0 |       0 |    4.25 | 28-152            
+ BasicQuestions.tsx    |    3.84 |        0 |       0 |    3.84 | 28-167            
  ButtonComponent.tsx   |       0 |      100 |       0 |       0 | 10-11             
- DetailedQuestions.tsx |    2.38 |        0 |       0 |     2.5 | 21-131            
+ DetailedQuestions.tsx |    2.17 |        0 |       0 |    2.22 | 21-140            
  apiService.ts         |       0 |      100 |       0 |       0 | 26-27             
  index.tsx             |       0 |      100 |     100 |       0 | 7-19              
  reportWebVitals.ts    |       0 |        0 |       0 |       0 | 3-10              
@@ -158,7 +158,7 @@ All files              |    6.87 |     7.89 |    2.38 |    7.03 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.184 s
+Time:        3.202 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
