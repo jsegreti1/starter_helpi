@@ -41,10 +41,6 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
     }
   }
 
-  function boldGPTHeaders(response: string): string{
-    return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
-  }
-
   function restartQuiz(){
     setAnswers([]);
     setFinished(false);
@@ -56,6 +52,17 @@ function refreshGPT(){
   setGptResponse("");
   setLoading(true);
   submitAnswersToGPT(answers);
+}
+
+function formatGPTResponse(response: string): string {
+  const sections = response.split("**").map((part, index) => {
+    if (index % 2 !== 0) {  
+      return `<b>${part.trim().replace(/:$/, '')}</b><br>`;
+    } else {
+      return part.replace(/^:\s*/, "");
+    }
+  });
+  return sections.join("");
 }
 
   async function submitAnswersToGPT(allAnswers: string[]) {
@@ -71,12 +78,12 @@ function refreshGPT(){
       const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4-turbo",
         messages: [
-          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you, along with a short description of why the career is relevant."},
+          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you, along with a short description of how it fits you."},
           {role: "user", content: promptText}
         ],
       });
 
-      const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
+      const responseText = formatGPTResponse(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);

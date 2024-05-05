@@ -65,17 +65,12 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     submitAnswersToGPT(answers);
   }
 
-  function boldGPTHeaders(response: string): string{
-    return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
-  }
-
   function formatGPTResponse(response: string): string {
-    // Split the response into lines based on the bold tags which indicate a new section
     const sections = response.split("**").map((part, index) => {
-      if (index % 2 !== 0) {  // Assuming that the odd parts of the split are the names
-        return `<b>${part}</b><br>`;  // Add a line break after the bold name
+      if (index % 2 !== 0) {  
+        return `<b>${part.trim().replace(/:$/, '')}</b><br>`;
       } else {
-        return part;  // Return the description as normal text
+        return part.replace(/^:\s*/, "");
       }
     });
     return sections.join("");
@@ -95,7 +90,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
       const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4-turbo",
         messages: [
-          {role: "system", content: "Tell me details about your life and I will return only a list of 5 careers that seems like a good fit for you, along with a short description of why the career is relevant."},
+          {role: "system", content: "Tell me details about your life and I will return only a list of 5 careers that seems like a good fit for you, along with a short description of how it fits you.."},
           {role: "user", content: promptText}
         ],
       });
