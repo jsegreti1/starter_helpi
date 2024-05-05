@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card, Form, ProgressBar, Spinner } from "react-bootstrap";
 import OpenAI from 'openai'; // Make sure you have the openai package installed
-
+import './styles.css';
 
 const PROMPTS =[ 
   "What is your employment status?", 
@@ -149,7 +149,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     return (
       <div>
         <p>Answers submitted. Here's the response from GPT:</p>
-        <Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
+        <Card className="mt-3 shadow-lg frosted-glass" bg="transparent" text="dark" style={{ width: '70%', margin: '0 auto' }}>
           <Card.Header as="h5" className="text-center">
             Quiz Results
           </Card.Header>

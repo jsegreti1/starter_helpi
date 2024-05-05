@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, ProgressBar, Card, Spinner } from "react-bootstrap";
 import OpenAI from 'openai';
-
+import './styles.css';
 
 const PROMPTS = [
   "Please describe your current occupation or status. If you're currently or have previously been a student, please also mention your area of study.",
@@ -123,20 +123,21 @@ function formatGPTResponse(response: string): string {
           </Spinner>
         </div>
       ) : (
-        <><Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
-              <Card.Header as="h5" className="text-center">
-                Quiz Results
-              </Card.Header>
-              <Card.Body>
-                <Card.Text as="div">
-                  {gptResponse.split('\n').map((item, key) => (
-                    <React.Fragment key={key}>
-                      <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
-                    </React.Fragment>
-                  ))}
-                </Card.Text>
-              </Card.Body>
-            </Card><Button onClick={() => restartQuiz()}>Take Quiz Again</Button><Button onClick={() => refreshGPT()}>Generate a New Response</Button></>
+        <><Card className="mt-3 shadow-lg frosted-glass" bg="transparent" text="dark" style={{ width: '70%', margin: '0 auto' }}>
+            <Card.Header as="h5" className="text-center">
+              Quiz Results
+            </Card.Header>
+            <Card.Body>
+              <Card.Text as="div">
+                {gptResponse.split('\n').map((item, key) => (
+                  <React.Fragment key={key}>
+                    <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
+                  </React.Fragment>
+                ))}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+            <Button onClick={() => restartQuiz()}>Take Quiz Again</Button><Button onClick={() => refreshGPT()}>Generate a New Response</Button></>
       )}
     </Form>
   );
