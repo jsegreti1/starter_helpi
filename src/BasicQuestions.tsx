@@ -69,24 +69,44 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
   }
 
+  function formatGPTResponse(response: string): string {
+    // Split the response into lines based on the bold tags which indicate a new section
+    const sections = response.split("**").map((part, index) => {
+      if (index % 2 !== 0) {  // Assuming that the odd parts of the split are the names
+        return `<b>${part}</b><br>`;  // Add a line break after the bold name
+      } else {
+        return part;  // Return the description as normal text
+      }
+    });
+    return sections.join("");
+  }
+
   async function submitAnswersToGPT(allAnswers: string[]) {
+    setLoading(true); // Start loading
+
     const openai = new OpenAI({
       apiKey: apiKey,
       dangerouslyAllowBrowser: true
     });
 
     const promptText = allAnswers.join('\n');
+
     try {
       const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4-turbo",
-        messages: [{role: "user", content: promptText}],
+        messages: [
+          {role: "system", content: "Tell me details about your life and I will return only a list of 5 careers that seems like a good fit for you, along with a short description of why the career is relevant."},
+          {role: "user", content: promptText}
+        ],
       });
-      setLoading(true);  // Start loading
-      const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
+
+      const responseText = formatGPTResponse(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
+
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       alert('Failed to fetch response from OpenAI.');
+      setLoading(false);
     }
     setLoading(false);  // End loading
   }
@@ -136,7 +156,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
         <p>Answers submitted. Here's the response from GPT:</p>
         <Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
           <Card.Header as="h5" className="text-center">
-            Personalized Response
+            Quiz Results
           </Card.Header>
           <Card.Body>
             <Card.Text as="div">

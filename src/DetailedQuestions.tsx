@@ -59,7 +59,7 @@ function refreshGPT(){
 }
 
   async function submitAnswersToGPT(allAnswers: string[]) {
-    setLoading(true);  // Start loading
+    setLoading(true);
     const openai = new OpenAI({
       apiKey: apiKey,
       dangerouslyAllowBrowser: true
@@ -71,7 +71,7 @@ function refreshGPT(){
       const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4-turbo",
         messages: [
-          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you."},
+          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you, along with a short description of why the career is relevant."},
           {role: "user", content: promptText}
         ],
       });
@@ -81,6 +81,7 @@ function refreshGPT(){
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       alert('Failed to fetch response from OpenAI.');
+      setLoading(false);
     }
     setLoading(false);  // End loading
   }
@@ -117,7 +118,7 @@ function refreshGPT(){
       ) : (
         <><Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
               <Card.Header as="h5" className="text-center">
-                Personalized Response
+                Quiz Results
               </Card.Header>
               <Card.Body>
                 <Card.Text as="div">
