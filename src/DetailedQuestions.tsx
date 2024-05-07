@@ -109,7 +109,7 @@ function formatGPTResponse(response: string): string {
             striped
             animated
             now={(qNum / PROMPTS.length) * 100}
-            label={`${qNum + 1}/${PROMPTS.length}`}
+            label={`${qNum}/${PROMPTS.length}`}
             style={{ marginTop: '20px', height: '30px', width: '100%' }}
           />
           <Button variant="primary" onClick={handleSubmit} style={{ marginTop: '20px' }}>
@@ -117,14 +117,24 @@ function formatGPTResponse(response: string): string {
           </Button>
         </>
       ) : loading ? (
-        <div className="text-center">
-          <Spinner animation="border" role="status">
-            <span className="sr-only"></span>
-          </Spinner>
-        </div>
+          <Card className="mt-3 shadow-lg frosted-glass" text="dark" style={{ width: '100%', margin: '0 auto' }}>
+            <Card.Header as="h5" className="text-center" style={{ fontSize: '48px'}}>
+              Getting results...
+            </Card.Header>
+            <Card.Body>
+              <Card.Text as="div">
+                <div className="text-center">
+                  <Spinner animation="border" role="status">
+                    <span className="sr-only"></span>
+                  </Spinner>
+                </div>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+
       ) : (
-        <><Card className="mt-3 shadow-lg frosted-glass" bg="transparent" text="dark" style={{ width: '70%', margin: '0 auto' }}>
-            <Card.Header as="h5" className="text-center">
+        <><Card className="mt-3 frosted-glass shadow-lg " text="dark" style={{ width: '70%', margin: '0 auto' }}>
+            <Card.Header as="h5" className="text-center" style={{ fontSize: '48px'}}>
               Quiz Results
             </Card.Header>
             <Card.Body>
