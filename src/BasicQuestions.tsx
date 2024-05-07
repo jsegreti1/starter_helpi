@@ -108,6 +108,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
 
   if (!finished) {
     return (
+      <Card className="frosted-glass2" text="black" style={{ borderRadius: '15px' }}>
       <Form>
         <Form.Group>
           <Form.Label>{PROMPTS[qNum]}</Form.Label>
@@ -131,10 +132,13 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
           label={`${qNum}/${PROMPTS.length}`}
           style={{ marginTop: '20px', height: '30px', width: '100%' }}
         />
-        <Button variant="primary" onClick={handleSubmit} style={{ marginTop: '20px' }}>
+        <div className="header-button-container">
+        <Button variant="outline-dark" onClick={handleSubmit} style={{margin: "10px", width: "120px"}}>
           {qNum === PROMPTS.length - 1 ? 'Submit' : 'Next'}
         </Button>
+        </div>
       </Form>
+      </Card>
     );
   } else {
     if(loading){
@@ -162,9 +166,16 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
               ))}
             </Card.Text>
           </Card.Body>
+        
+        <div className="header-button-container">
+        <div>
+        <Button variant="outline-dark" style={{width: "150px"}} onClick={()=>restartQuiz()}>Take Quiz Again</Button>
+        </div>
+        <div>
+        <Button variant="outline-dark" style={{margin: "5px", width: "230px"}} onClick={()=>refreshGPT()}>Generate a New Response</Button>
+        </div>
+        </div>
         </Card>
-        <Button onClick={()=>restartQuiz()}>Take Quiz Again</Button>
-        <Button onClick={()=>refreshGPT()}>Generate a New Response</Button>
       </div>
     );
   }
