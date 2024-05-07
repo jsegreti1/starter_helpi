@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, ProgressBar, Card, Spinner } from "react-bootstrap";
 import OpenAI from 'openai';
-import './styles.css';
+
 
 const PROMPTS = [
   "Please describe your current occupation or status. If you're currently or have previously been a student, please also mention your area of study.",
@@ -41,6 +41,10 @@ export function DetailedQuestions({ apiKey }: DetailedQuestionsProps): JSX.Eleme
     }
   }
 
+  function boldGPTHeaders(response: string): string{
+    return response.split("**").map((part, index) => index % 2 === 0 ? part : `<b>${part}</b>`).join("");
+  }
+
   function restartQuiz(){
     setAnswers([]);
     setFinished(false);
@@ -54,19 +58,8 @@ function refreshGPT(){
   submitAnswersToGPT(answers);
 }
 
-function formatGPTResponse(response: string): string {
-  const sections = response.split("**").map((part, index) => {
-    if (index % 2 !== 0) {  
-      return `<b>${part.trim().replace(/:$/, '')}</b><br>`;
-    } else {
-      return part.replace(/^:\s*/, "");
-    }
-  });
-  return sections.join("");
-}
-
   async function submitAnswersToGPT(allAnswers: string[]) {
-    setLoading(true);
+    setLoading(true);  // Start loading
     const openai = new OpenAI({
       apiKey: apiKey,
       dangerouslyAllowBrowser: true
@@ -78,17 +71,16 @@ function formatGPTResponse(response: string): string {
       const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4-turbo",
         messages: [
-          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you, along with a short description of how it fits you."},
+          {role: "system", content: "Tell me details about your life and I will return a list of 5 careers that seems like a good fit for you."},
           {role: "user", content: promptText}
         ],
       });
 
-      const responseText = formatGPTResponse(chatCompletion.choices[0].message.content || "");
+      const responseText = boldGPTHeaders(chatCompletion.choices[0].message.content || "");
       setGptResponse(responseText);
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
       alert('Failed to fetch response from OpenAI.');
-      setLoading(false);
     }
     setLoading(false);  // End loading
   }
@@ -97,24 +89,28 @@ function formatGPTResponse(response: string): string {
     <Form>
       {!finished ? (
         <>
-          <Form.Group>
-            <Form.Label>{PROMPTS[qNum]}</Form.Label>
+        <Card className="frosted-glass2" text="black" style={{ borderRadius: '15px' }}>
+          {/* <Form.Group> */}
+            <Card.Header>{PROMPTS[qNum]}</Card.Header>
             <Form.Control
               as="textarea"
               value={currentAns}
               onChange={(event) => setCurrentAns(event.target.value)}
             />
-          </Form.Group>
+          {/* </Form.Group> */}
           <ProgressBar
             striped
             animated
-            now={(qNum / PROMPTS.length) * 100}
-            label={`${qNum}/${PROMPTS.length}`}
+            now={((qNum+1) / PROMPTS.length) * 100}
+            label={`${qNum + 1}/${PROMPTS.length}`}
             style={{ marginTop: '20px', height: '30px', width: '100%' }}
           />
-          <Button variant="primary" onClick={handleSubmit} style={{ marginTop: '20px' }}>
-            Next
+          <div className="header-button-container">
+          <Button variant="outline-dark" onClick={handleSubmit} style={{margin: "10px", width: "120px"}}>
+            {qNum === PROMPTS.length - 1 ? 'Submit' : 'Next'}
           </Button>
+          </div>
+          </Card>
         </>
       ) : loading ? (
           <Card className="mt-3 shadow-lg frosted-glass" text="dark" style={{ width: '100%', margin: '0 auto' }}>
@@ -133,21 +129,28 @@ function formatGPTResponse(response: string): string {
           </Card>
 
       ) : (
-        <><Card className="mt-3 frosted-glass shadow-lg " text="dark" style={{ width: '70%', margin: '0 auto' }}>
-            <Card.Header as="h5" className="text-center" style={{ fontSize: '48px'}}>
-              Quiz Results
-            </Card.Header>
-            <Card.Body>
-              <Card.Text as="div">
-                {gptResponse.split('\n').map((item, key) => (
-                  <React.Fragment key={key}>
-                    <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
-                  </React.Fragment>
-                ))}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-            <Button onClick={() => restartQuiz()}>Take Quiz Again</Button><Button onClick={() => refreshGPT()}>Generate a New Response</Button></>
+        <><Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
+              <Card.Header as="h5" className="text-center">
+                Personalized Response
+              </Card.Header>
+              <Card.Body>
+                <Card.Text as="div">
+                  {gptResponse.split('\n').map((item, key) => (
+                    <React.Fragment key={key}>
+                      <p style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: item }} />
+                    </React.Fragment>
+                  ))}
+                </Card.Text>
+              </Card.Body>
+              <div className="header-button-container">
+              <div>
+              <Button variant="outline-dark" style={{width: "150px"}} onClick={()=>restartQuiz()}>Take Quiz Again</Button>
+              </div>
+              <div>
+              <Button variant="outline-dark" style={{margin: "5px", width: "230px"}} onClick={()=>refreshGPT()}>Generate a New Response</Button>
+              </div>
+              </div>
+              </Card></>
       )}
     </Form>
   );
