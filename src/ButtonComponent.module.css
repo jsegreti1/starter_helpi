@@ -20,7 +20,7 @@
   line-height: 1.5;
   margin: 0;
   padding: 0;
-  text-transform: uppercase;
+
 }
 
 .fancyButton:disabled {
@@ -38,7 +38,7 @@
 
 .fancyButton {  /* Does this overwrite the above? 4/18 */
   --thickness: 0.3rem;
-  --roundness: 0 rem; /*Change*/
+  --roundness: 0.2rem; /*Change*/
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
   background: none;
@@ -48,10 +48,11 @@
   color: #0c0d0e;
   cursor: pointer;
   display: block;
-  font-family: 'Helvetica Neue', 'REM', "sans-serif";
+  font-family: 'Comic Sans', 'Helvetica Neue', "sans-serif";
   font-size: 1rem;
   padding: 0.8rem 3rem;
   position: relative;
+  text-transform: uppercase;
 }
 
 .fancyButton:hover {
