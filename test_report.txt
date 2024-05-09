@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (46 ms)
+  ✕ renders learn react link (43 ms)
 
   ● renders learn react link
 
@@ -32,64 +32,66 @@ FAIL src/App.test.tsx
               [36m</p>[39m
             [36m</div>[39m
             [36m<div[39m
-              [33mclass[39m=[32m"quiz-container frosted-glass intro-container"[39m
+              [33mclass[39m=[32m"quiz-header-container frosted-glass"[39m
             [36m>[39m
-              [36m<h1>[39m
+              [36m<h2[39m
+                [33mclass[39m=[32m"quiz-header"[39m
+              [36m>[39m
                 [0mCareer Challenges[0m
-              [36m</h1>[39m
+              [36m</h2>[39m
               [36m<p>[39m
                 [0mWe offer two types of questionnaires, Basic Questions and Detailed Questions. [0m
               [36m</p>[39m
               [36m<p>[39m
                 [0mRead below to find out which one is best for your needs. [0m
               [36m</p>[39m
-            [36m</div>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"quizzes-container"[39m
-            [36m>[39m
               [36m<div[39m
-                [33mclass[39m=[32m"quiz-section frosted-glass"[39m
+                [33mclass[39m=[32m"quizzes-container"[39m
               [36m>[39m
-                [36m<p>[39m
-                  [0mMultiple choice! With just seven questions, get a rough idea of what career fields may be the best for you. [0m
-                [36m</p>[39m
-                [36m<button[39m
-                  [33mclass[39m=[32m"fancyButton"[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"quiz-section"[39m
                 [36m>[39m
-                  [0mBasic Questions[0m
-                  [36m<svg[39m
-                    [33mpreserveAspectRatio[39m=[32m"none"[39m
-                    [33mviewBox[39m=[32m"0 0 200 100"[39m
+                  [36m<p>[39m
+                    [0mMultiple choice! With just seven questions, get an idea of what career fields may be the best for you. [0m
+                  [36m</p>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"fancyButton"[39m
                   [36m>[39m
-                    [36m<rect[39m
-                      [33mfill[39m=[32m"transparent"[39m
-                      [33mheight[39m=[32m"100"[39m
-                      [33mwidth[39m=[32m"200"[39m
-                    [36m/>[39m
-                  [36m</svg>[39m
-                [36m</button>[39m
-              [36m</div>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"quiz-section frosted-glass"[39m
-              [36m>[39m
-                [36m<p>[39m
-                  [0mOpen response! Type your responses to the questions, and receive AI-generated career recommendations.[0m
-                [36m</p>[39m
-                [36m<button[39m
-                  [33mclass[39m=[32m"fancyButton"[39m
+                    [0mBasic Questions[0m
+                    [36m<svg[39m
+                      [33mpreserveAspectRatio[39m=[32m"none"[39m
+                      [33mviewBox[39m=[32m"0 0 200 100"[39m
+                    [36m>[39m
+                      [36m<rect[39m
+                        [33mfill[39m=[32m"transparent"[39m
+                        [33mheight[39m=[32m"100"[39m
+                        [33mwidth[39m=[32m"200"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"quiz-section"[39m
                 [36m>[39m
-                  [0mDetailed Questions[0m
-                  [36m<svg[39m
-                    [33mpreserveAspectRatio[39m=[32m"none"[39m
-                    [33mviewBox[39m=[32m"0 0 200 100"[39m
+                  [36m<p>[39m
+                    [0mOpen response! Type your responses to the questions, and receive AI-generated career recommendations.[0m
+                  [36m</p>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"fancyButton"[39m
                   [36m>[39m
-                    [36m<rect[39m
-                      [33mfill[39m=[32m"transparent"[39m
-                      [33mheight[39m=[32m"100"[39m
-                      [33mwidth[39m=[32m"200"[39m
-                    [36m/>[39m
-                  [36m</svg>[39m
-                [36m</button>[39m
+                    [0mDetailed Questions[0m
+                    [36m<svg[39m
+                      [33mpreserveAspectRatio[39m=[32m"none"[39m
+                      [33mviewBox[39m=[32m"0 0 200 100"[39m
+                    [36m>[39m
+                      [36m<rect[39m
+                        [33mfill[39m=[32m"transparent"[39m
+                        [33mheight[39m=[32m"100"[39m
+                        [33mwidth[39m=[32m"200"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
               [36m</div>[39m
             [36m</div>[39m
           [36m</div>[39m
@@ -141,6 +143,23 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |    6.66 |      7.5 |    2.38 |    6.71 |                   
+ App.tsx               |   23.07 |     37.5 |    6.66 |   23.07 | 15-21,45-141      
+ BasicQuestions.tsx    |    3.84 |        0 |       0 |    3.84 | 28-184            
+ ButtonComponent.tsx   |       0 |      100 |       0 |       0 | 10-11             
+ DetailedQuestions.tsx |    2.38 |        0 |       0 |    2.43 | 21-150            
+ apiService.ts         |       0 |      100 |       0 |       0 | 26-27             
+ index.tsx             |       0 |      100 |     100 |       0 | 7-19              
+ reportWebVitals.ts    |       0 |        0 |       0 |       0 | 3-10              
+-----------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.142 s
+Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -153,20 +172,3 @@ ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
 your devDependencies to work around this error. This will make this message
 go away.[0m
   
------------------------|---------|----------|---------|---------|-------------------
-File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
------------------------|---------|----------|---------|---------|-------------------
-All files              |    6.66 |      7.5 |    2.38 |    6.71 |                   
- App.tsx               |   23.07 |     37.5 |    6.66 |   23.07 | 15-21,46-139      
- BasicQuestions.tsx    |    3.84 |        0 |       0 |    3.84 | 28-184            
- ButtonComponent.tsx   |       0 |      100 |       0 |       0 | 10-11             
- DetailedQuestions.tsx |    2.38 |        0 |       0 |    2.43 | 21-150            
- apiService.ts         |       0 |      100 |       0 |       0 | 26-27             
- index.tsx             |       0 |      100 |     100 |       0 | 7-19              
- reportWebVitals.ts    |       0 |        0 |       0 |       0 | 3-10              
------------------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 1 total
-Snapshots:   0 total
-Time:        3.365 s
-Ran all test suites.
