@@ -108,7 +108,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
 
   if (!finished) {
     return (
-      <Card className="frosted-glass2" text="black" style={{ borderRadius: '15px' }}>
+      <Card className="frosted-glass2 intro-container" text="black" style={{ borderRadius: '15px' }}>
       <Form>
         <Form.Group>
           <Form.Label>{PROMPTS[qNum]}</Form.Label>
@@ -128,8 +128,8 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
         <ProgressBar
           striped
           animated
-          now={((qNum) / PROMPTS.length) * 100}
-          label={`${qNum}/${PROMPTS.length}`}
+          now={((qNum+1) / PROMPTS.length) * 100}
+          label={`${qNum+1}/${PROMPTS.length}`}
           style={{ marginTop: '20px', height: '30px', width: '100%' }}
         />
         <div className="header-button-container">
@@ -143,17 +143,27 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
   } else {
     if(loading){
       return(
-      <div className="text-center">
-      <Spinner animation="border" role="status">
-        <span className="sr-only"></span>
-      </Spinner>
-    </div>
+        <Card className="mt-3 shadow-lg frosted-glass" text="dark" style={{ width: '100%', margin: '0 auto' }}>
+          <Card.Header as="h5" className="text-center" style={{ fontSize: '48px'}}>
+            Getting results...
+          </Card.Header>
+          <Card.Body>
+            <Card.Text as="div">
+              <div className="text-center">
+                <Spinner animation="border" role="status">
+                  <span className="sr-only"></span>
+                </Spinner>
+              </div>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+
     );
     }else{
     return (
       <div>
         <p>Answers submitted. Here's the response from GPT:</p>
-        <Card className="mt-3 shadow-lg frosted-glass" bg="transparent" text="dark" style={{ width: '70%', margin: '0 auto' }}>
+        <Card className="mt-3 shadow-lg frosted-glass2" text="dark" style={{ width: '70%', margin: '0 auto' }}>
           <Card.Header as="h5" className="text-center">
             Quiz Results
           </Card.Header>
