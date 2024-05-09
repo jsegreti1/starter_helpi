@@ -1,11 +1,11 @@
 .frosted-glass {
-    background-color: rgba(255, 255, 255, 0.305);  /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.7);  /* Semi-transparent white */
     backdrop-filter: blur(5px);  /* Blur effect for the frosted glass */
     border-radius: 15px;  /* Optional: for rounded corners */
   }
 
 .frosted-glass2 {
-    background-color: rgba(255, 255, 255, 0.429);  /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.7);  /* Semi-transparent white */
     backdrop-filter: blur(5px);  /* Blur effect for the frosted glass */
     border-radius: 15px;  /* Optional: for rounded corners */
   }

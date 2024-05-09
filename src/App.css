@@ -53,6 +53,16 @@ body, html {
   border-radius: 1rem
 }
 
+.detailedq-container {
+  margin-bottom: 2rem;
+  border: 2px solid #000;
+  padding: 1rem; 
+  margin: 1rem auto; 
+  max-width: 60%;
+  min-width: 100%; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 1rem
+}
 .frosted-glass {
   background-color: rgba(255, 255, 255, 0.15);  /* Semi-transparent white */
   backdrop-filter: blur(5px);  /* Blur effect for the frosted glass */

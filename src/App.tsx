@@ -33,8 +33,8 @@ function App() {
     <p>Welcome to the Cool Career Corner - the destination of choice for all cool kids who care about their future! Here, you'll find tools to help you understand your strengths and how they can be applied to specific careers. Are you ready to discover your destiny?</p>
   </div>
   
-  <div className="quiz-header-container">
-    <h2 className="quiz-header">Career Challenges</h2>
+  <div className="quiz-container frosted-glass intro-container">
+    <h1>Career Challenges</h1>
     <p>We offer two types of questionnaires, Basic Questions and Detailed Questions. </p>
     <p>Read below to find out which one is best for your needs. </p>
   </div>

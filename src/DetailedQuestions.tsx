@@ -89,7 +89,7 @@ function refreshGPT(){
     <Form>
       {!finished ? (
         <>
-        <Card className="frosted-glass2" text="black" style={{ borderRadius: '15px' }}>
+        <Card className="frosted-glass2 detailedq-container" text="black" style={{ borderRadius: '15px' }}>
           {/* <Form.Group> */}
             <Card.Header>{PROMPTS[qNum]}</Card.Header>
             <Form.Control
@@ -129,7 +129,7 @@ function refreshGPT(){
           </Card>
 
       ) : (
-        <><Card className="mt-3 shadow-lg" bg="primary" text="white" style={{ borderRadius: '15px' }}>
+        <><Card className="mt-3 shadow-lg frosted-glass" text="black" style={{ borderRadius: '15px' }}>
               <Card.Header as="h5" className="text-center">
                 Personalized Response
               </Card.Header>
