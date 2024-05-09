@@ -108,7 +108,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
 
   if (!finished) {
     return (
-      <Card className="frosted-glass2 intro-container" text="black" style={{ borderRadius: '15px' }}>
+      <Card className="frosted-glass2 basicq-container" text="black" style={{ borderRadius: '15px' ,fontSize: '24px' }}>
       <Form>
         <Form.Group>
           <Form.Label>{PROMPTS[qNum]}</Form.Label>
@@ -143,7 +143,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
   } else {
     if(loading){
       return(
-        <Card className="mt-3 shadow-lg frosted-glass" text="dark" style={{ width: '100%', margin: '0 auto' }}>
+        <Card className="mt-3 shadow-lg frosted-glass basicq-container" text="dark" style={{ width: '100%', margin: '0 auto' }}>
           <Card.Header as="h5" className="text-center" style={{ fontSize: '48px'}}>
             Getting results...
           </Card.Header>
@@ -162,8 +162,7 @@ export function BasicQuestions({ apiKey }: BasicQuestionsProps): JSX.Element {
     }else{
     return (
       <div>
-        <p>Answers submitted. Here's the response from GPT:</p>
-        <Card className="mt-3 shadow-lg frosted-glass2" text="dark" style={{ width: '70%', margin: '0 auto' }}>
+        <Card className="mt-3 shadow-lg frosted-glass2 intro-container" text="dark" style={{ width: '70%', margin: '0 auto' }}>
           <Card.Header as="h5" className="text-center">
             Quiz Results
           </Card.Header>
