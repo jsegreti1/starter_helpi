@@ -33,16 +33,15 @@ function App() {
     <p>Welcome to the Cool Career Corner - the destination of choice for all cool kids who care about their future! Here, you'll find tools to help you understand your strengths and how they can be applied to specific careers. Are you ready to discover your destiny?</p>
   </div>
   
-  <div className="quiz-container frosted-glass intro-container">
-    <h1>Career Challenges</h1>
+  <div className="quiz-header-container frosted-glass">
+    <h2 className="quiz-header">Career Challenges</h2>
     <p>We offer two types of questionnaires, Basic Questions and Detailed Questions. </p>
     <p>Read below to find out which one is best for your needs. </p>
-  </div>
 
-  <div className="quizzes-container">
+    <div className="quizzes-container">
 
-    <div className="quiz-section frosted-glass">
-    <p>Multiple choice! With just seven questions, get a rough idea of what career fields may be the best for you. </p>
+    <div className="quiz-section">
+    <p>Multiple choice! With just seven questions, get an idea of what career fields may be the best for you. </p>
     <button className={styles.fancyButton} onClick={() => setActiveSection('basic')}>
         Basic Questions
         <svg viewBox="0 0 200 100" preserveAspectRatio="none">
@@ -52,7 +51,7 @@ function App() {
       
     </div>
 
-    <div className="quiz-section frosted-glass">
+    <div className="quiz-section">
     <p>Open response! Type your responses to the questions, and receive AI-generated career recommendations.</p>
       <button className={styles.fancyButton} onClick={() => setActiveSection('detailed')}>
         Detailed Questions
@@ -62,8 +61,11 @@ function App() {
       </button>
       
     </div>
+    </div>
+    </div>
   </div>
-</div>
+  
+
 
         <footer>
           <p>Home | Donate | Contact Us | Terms of Service</p>
