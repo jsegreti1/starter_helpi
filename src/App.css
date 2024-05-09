@@ -83,25 +83,29 @@ body, html {
   margin-bottom: 0.5rem;
 }
 
-.quiz-header-container { 
-  display: flex;
-  flex-direction: column;
+.quiz-header-container {
+  width: 70%;
+  padding: 20px; /* Adjust padding as needed */
   align-items: center;
-  width: 100%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 2px solid #000;
+  border-radius: 1rem
+
 }
 
 .quizzes-container {
   display: flex;
+  align-items: center;
   justify-content: space-around;
   padding: 20px;
-  max-width: 70%;
+  width: 100%;
 }
 
 .quiz-section {
-  flex: 1;
-  margin: 0 10px; /* 10px space between the two quiz section boxes */
+  background-color: rgba(92, 143, 205, 0.503);
+  flex: 1 1 auto; /* Allow each section to grow and shrink equally */
+  margin: 0 10px;
   padding: 1rem;
-  border: 2px solid #000;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,4 +165,9 @@ footer {
   text-align: center;
   border-top: 1px solid #444;
   margin-top: auto; /* Pushes footer to bottom if content is less */
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 5px; /* adjust as needed */
 }
