@@ -1,5 +1,6 @@
-/* module.css files ensure that component isolation and multiple styles are a possibility. */
+/* This fancyButton code was taken from https://enjeck.com/btns/ and formats the buttons on the homepage */
 
+/* Reset border and box-sizing for fancyButton and its pseudo-elements */
 .fancyButton,
 .fancyButton *,
 .fancyButton :after,
@@ -10,11 +11,12 @@
   box-sizing: border-box;
 }
 
-.fancyButton { /* Color and font gets overwritten by something outside of this file */
+/* Initial styling for fancyButton */
+.fancyButton { 
   -webkit-tap-highlight-color: transparent;
   background-color: #000;
   background-image: none;
-  color: #f2f2f2; /* Change later */
+  color: #f2f2f2;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 100%;
   line-height: 1.5;
@@ -23,22 +25,30 @@
 
 }
 
+/* Style for disabled fancyButton */
 .fancyButton:disabled {
   cursor: default;
 }
+
+/* Outline for fancyButton when focused in Firefox */
 .fancyButton:-moz-focusring {
   outline: auto;
 }
+
+/* Align SVG vertically within fancyButton */
 .fancyButton svg {
   vertical-align: middle;
 }
+
+/* Hide elements with hidden attribute within fancyButton */
 .fancyButton [hidden] {
   display: none;
 }
 
-.fancyButton {  /* Does this overwrite the above? 4/18 */
+/* Main styling for fancyButton */
+.fancyButton {
   --thickness: 0.3rem;
-  --roundness: 0.2rem; /*Change*/
+  --roundness: 0.2rem;
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
   background: none;
@@ -55,14 +65,19 @@
   text-transform: uppercase;
 }
 
+/* Styling for fancyButton on hover */
 .fancyButton:hover {
   background: hsla(0, 0%, 100%, 0.3);
   filter: brightness(1.2);
 }
+
+/* Styling for fancyButton when active */
 .fancyButton:active {
   --opacity: 0;
   background: hsla(0, 0%, 100%, 0.1);
 }
+
+/* SVG styling within fancyButton */
 .fancyButton svg {
   border-radius: var(--roundness);
   display: block;
@@ -74,6 +89,7 @@
   width: 100%;
 }
 
+/* Rectangle styling within SVG in fancyButton */
 .fancyButton rect {
     fill: none;
     stroke: #1174f6;
@@ -89,13 +105,14 @@
     width: 100%;
   }
   
+  /* Rectangle animation and opacity on hover */
   .fancyButton:hover rect {
     animation-play-state: running;
     opacity: 1.0;
   }
 
-  
+  /* Keyframes for snake animation */
   @keyframes snake {
-    0% { stroke-dashoffset: 0; } /* Start at 0 offset */
-    100% { stroke-dashoffset: 380%; } /* End at the same visual point as the start */
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 380%; }
   }
