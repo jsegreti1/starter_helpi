@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (43 ms)
+  ✕ renders learn react link (45 ms)
 
   ● renders learn react link
 
@@ -125,19 +125,19 @@ FAIL src/App.test.tsx
       [36m</div>[39m
     [36m</body>[39m
 
-       5 | test('renders learn react link', () => {
-       6 |   render(<App />);
-    >  7 |   const linkElement = screen.getByText(/learn react/i);
+       6 | test('renders learn react link', () => {
+       7 |   render(<App />);
+    >  8 |   const linkElement = screen.getByText(/learn react/i);
          |                              ^
-       8 |   expect(linkElement).toBeInTheDocument();
-       9 | });
-      10 |
+       9 |   expect(linkElement).toBeInTheDocument();
+      10 | });
+      11 |
 
       at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
       at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
       at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-      at Object.<anonymous> (src/App.test.tsx:7:30)
+      at Object.<anonymous> (src/App.test.tsx:8:30)
       at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
       at runJest (node_modules/@jest/core/build/runJest.js:404:19)
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
@@ -147,18 +147,18 @@ FAIL src/App.test.tsx
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
 All files              |    6.66 |      7.5 |    2.38 |    6.71 |                   
- App.tsx               |   23.07 |     37.5 |    6.66 |   23.07 | 15-21,45-141      
- BasicQuestions.tsx    |    3.84 |        0 |       0 |    3.84 | 28-184            
- ButtonComponent.tsx   |       0 |      100 |       0 |       0 | 10-11             
- DetailedQuestions.tsx |    2.38 |        0 |       0 |    2.43 | 21-150            
- apiService.ts         |       0 |      100 |       0 |       0 | 26-27             
+ App.tsx               |   23.07 |     37.5 |    6.66 |   23.07 | 17-22,46-142      
+ BasicQuestions.tsx    |    3.84 |        0 |       0 |    3.84 | 34-199            
+ ButtonComponent.tsx   |       0 |      100 |       0 |       0 | 13-14             
+ DetailedQuestions.tsx |    2.38 |        0 |       0 |    2.43 | 25-162            
+ apiService.ts         |       0 |      100 |       0 |       0 | 32-33             
  index.tsx             |       0 |      100 |     100 |       0 | 7-19              
  reportWebVitals.ts    |       0 |        0 |       0 |       0 | 3-10              
 -----------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.142 s
+Time:        3.202 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
